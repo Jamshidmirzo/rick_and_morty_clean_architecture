@@ -1,0 +1,62 @@
+import 'package:dartz/dartz.dart';
+import 'package:rick_and_morty/core/error/failure.dart';
+import 'package:rick_and_morty/features/rick_and_morty/character/data/datasource/character_datasource.dart';
+import 'package:rick_and_morty/features/rick_and_morty/character/data/model/character.dart';
+import 'package:rick_and_morty/features/rick_and_morty/character/domain/repository/character_repository.dart';
+
+class CharacterRepositoryImpl extends CharacterRepository {
+  CharacterDatasource characterDatasource;
+  CharacterRepositoryImpl({
+    required this.characterDatasource,
+  });
+  @override
+  Future<Either<Failure, List<Character>>> getCharacters() async {
+    print('in repo');
+    return await _getCharacter(
+      () => characterDatasource.getCharacters(),
+    );
+  }
+
+  @override
+  Future<Either<Failure, List<Character>>> getMultiCharacters(
+      List<int> idies) async {
+    return await _getMultiCharacter(
+        () => characterDatasource.getMultiCharacter(idies));
+  }
+
+  @override
+  Future<Either<Failure, Character>> getSingleCharacters(int id) async {
+    return await _getSingleCharacter(
+      () => characterDatasource.getSingleCharacter(id),
+    );
+  }
+}
+
+Future<Either<Failure, List<Character>>> _getCharacter(
+    Future<List<Character>> Function() getCharacter) async {
+  try {
+    return Right(
+      await getCharacter(),
+    );
+  } catch (e) {
+    return Left(ServerFailure());
+  }
+}
+
+Future<Either<Failure, List<Character>>> _getMultiCharacter(
+    Future<List<Character>> Function() getMultiCharacter) async {
+  try {
+    return Right(await getMultiCharacter());
+  } catch (e) {
+    return Left(ServerFailure());
+  }
+}
+
+Future<Either<Failure, Character>> _getSingleCharacter(
+    Future<Character> Function() getSingleCharacter) async {
+  try {
+    return Right(await getSingleCharacter());
+  } catch (e) {
+    return Left(ServerFailure());
+  }
+}
