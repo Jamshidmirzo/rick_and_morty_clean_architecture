@@ -18,23 +18,26 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CharacterEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCharacters,
+    required TResult Function(String? name) getCharacters,
     required TResult Function(int id) getSingleCharacters,
     required TResult Function(List<int> idies) getMultiCharacters,
+    required TResult Function(String newUrl) getFilterCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCharacters,
+    TResult? Function(String? name)? getCharacters,
     TResult? Function(int id)? getSingleCharacters,
     TResult? Function(List<int> idies)? getMultiCharacters,
+    TResult? Function(String newUrl)? getFilterCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCharacters,
+    TResult Function(String? name)? getCharacters,
     TResult Function(int id)? getSingleCharacters,
     TResult Function(List<int> idies)? getMultiCharacters,
+    TResult Function(String newUrl)? getFilterCharacters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -43,6 +46,7 @@ mixin _$CharacterEvent {
     required TResult Function(_getCharacters value) getCharacters,
     required TResult Function(_getSingleCharacters value) getSingleCharacters,
     required TResult Function(_getMultiCharacters value) getMultiCharacters,
+    required TResult Function(_getFilterCharacters value) getFilterCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -50,6 +54,7 @@ mixin _$CharacterEvent {
     TResult? Function(_getCharacters value)? getCharacters,
     TResult? Function(_getSingleCharacters value)? getSingleCharacters,
     TResult? Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult? Function(_getFilterCharacters value)? getFilterCharacters,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -57,6 +62,7 @@ mixin _$CharacterEvent {
     TResult Function(_getCharacters value)? getCharacters,
     TResult Function(_getSingleCharacters value)? getSingleCharacters,
     TResult Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult Function(_getFilterCharacters value)? getFilterCharacters,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -85,6 +91,8 @@ abstract class _$$getCharactersImplCopyWith<$Res> {
   factory _$$getCharactersImplCopyWith(
           _$getCharactersImpl value, $Res Function(_$getCharactersImpl) then) =
       __$$getCharactersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String? name});
 }
 
 /// @nodoc
@@ -94,57 +102,84 @@ class __$$getCharactersImplCopyWithImpl<$Res>
   __$$getCharactersImplCopyWithImpl(
       _$getCharactersImpl _value, $Res Function(_$getCharactersImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? name = freezed,
+  }) {
+    return _then(_$getCharactersImpl(
+      freezed == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$getCharactersImpl implements _getCharacters {
-  const _$getCharactersImpl();
+  const _$getCharactersImpl(this.name);
+
+  @override
+  final String? name;
 
   @override
   String toString() {
-    return 'CharacterEvent.getCharacters()';
+    return 'CharacterEvent.getCharacters(name: $name)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$getCharactersImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$getCharactersImpl &&
+            (identical(other.name, name) || other.name == name));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, name);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$getCharactersImplCopyWith<_$getCharactersImpl> get copyWith =>
+      __$$getCharactersImplCopyWithImpl<_$getCharactersImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCharacters,
+    required TResult Function(String? name) getCharacters,
     required TResult Function(int id) getSingleCharacters,
     required TResult Function(List<int> idies) getMultiCharacters,
+    required TResult Function(String newUrl) getFilterCharacters,
   }) {
-    return getCharacters();
+    return getCharacters(name);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCharacters,
+    TResult? Function(String? name)? getCharacters,
     TResult? Function(int id)? getSingleCharacters,
     TResult? Function(List<int> idies)? getMultiCharacters,
+    TResult? Function(String newUrl)? getFilterCharacters,
   }) {
-    return getCharacters?.call();
+    return getCharacters?.call(name);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCharacters,
+    TResult Function(String? name)? getCharacters,
     TResult Function(int id)? getSingleCharacters,
     TResult Function(List<int> idies)? getMultiCharacters,
+    TResult Function(String newUrl)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
-      return getCharacters();
+      return getCharacters(name);
     }
     return orElse();
   }
@@ -155,6 +190,7 @@ class _$getCharactersImpl implements _getCharacters {
     required TResult Function(_getCharacters value) getCharacters,
     required TResult Function(_getSingleCharacters value) getSingleCharacters,
     required TResult Function(_getMultiCharacters value) getMultiCharacters,
+    required TResult Function(_getFilterCharacters value) getFilterCharacters,
   }) {
     return getCharacters(this);
   }
@@ -165,6 +201,7 @@ class _$getCharactersImpl implements _getCharacters {
     TResult? Function(_getCharacters value)? getCharacters,
     TResult? Function(_getSingleCharacters value)? getSingleCharacters,
     TResult? Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult? Function(_getFilterCharacters value)? getFilterCharacters,
   }) {
     return getCharacters?.call(this);
   }
@@ -175,6 +212,7 @@ class _$getCharactersImpl implements _getCharacters {
     TResult Function(_getCharacters value)? getCharacters,
     TResult Function(_getSingleCharacters value)? getSingleCharacters,
     TResult Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult Function(_getFilterCharacters value)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getCharacters != null) {
@@ -185,7 +223,12 @@ class _$getCharactersImpl implements _getCharacters {
 }
 
 abstract class _getCharacters implements CharacterEvent {
-  const factory _getCharacters() = _$getCharactersImpl;
+  const factory _getCharacters(final String? name) = _$getCharactersImpl;
+
+  String? get name;
+  @JsonKey(ignore: true)
+  _$$getCharactersImplCopyWith<_$getCharactersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -253,9 +296,10 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCharacters,
+    required TResult Function(String? name) getCharacters,
     required TResult Function(int id) getSingleCharacters,
     required TResult Function(List<int> idies) getMultiCharacters,
+    required TResult Function(String newUrl) getFilterCharacters,
   }) {
     return getSingleCharacters(id);
   }
@@ -263,9 +307,10 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCharacters,
+    TResult? Function(String? name)? getCharacters,
     TResult? Function(int id)? getSingleCharacters,
     TResult? Function(List<int> idies)? getMultiCharacters,
+    TResult? Function(String newUrl)? getFilterCharacters,
   }) {
     return getSingleCharacters?.call(id);
   }
@@ -273,9 +318,10 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCharacters,
+    TResult Function(String? name)? getCharacters,
     TResult Function(int id)? getSingleCharacters,
     TResult Function(List<int> idies)? getMultiCharacters,
+    TResult Function(String newUrl)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getSingleCharacters != null) {
@@ -290,6 +336,7 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
     required TResult Function(_getCharacters value) getCharacters,
     required TResult Function(_getSingleCharacters value) getSingleCharacters,
     required TResult Function(_getMultiCharacters value) getMultiCharacters,
+    required TResult Function(_getFilterCharacters value) getFilterCharacters,
   }) {
     return getSingleCharacters(this);
   }
@@ -300,6 +347,7 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
     TResult? Function(_getCharacters value)? getCharacters,
     TResult? Function(_getSingleCharacters value)? getSingleCharacters,
     TResult? Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult? Function(_getFilterCharacters value)? getFilterCharacters,
   }) {
     return getSingleCharacters?.call(this);
   }
@@ -310,6 +358,7 @@ class _$getSingleCharactersImpl implements _getSingleCharacters {
     TResult Function(_getCharacters value)? getCharacters,
     TResult Function(_getSingleCharacters value)? getSingleCharacters,
     TResult Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult Function(_getFilterCharacters value)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getSingleCharacters != null) {
@@ -401,9 +450,10 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() getCharacters,
+    required TResult Function(String? name) getCharacters,
     required TResult Function(int id) getSingleCharacters,
     required TResult Function(List<int> idies) getMultiCharacters,
+    required TResult Function(String newUrl) getFilterCharacters,
   }) {
     return getMultiCharacters(idies);
   }
@@ -411,9 +461,10 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? getCharacters,
+    TResult? Function(String? name)? getCharacters,
     TResult? Function(int id)? getSingleCharacters,
     TResult? Function(List<int> idies)? getMultiCharacters,
+    TResult? Function(String newUrl)? getFilterCharacters,
   }) {
     return getMultiCharacters?.call(idies);
   }
@@ -421,9 +472,10 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? getCharacters,
+    TResult Function(String? name)? getCharacters,
     TResult Function(int id)? getSingleCharacters,
     TResult Function(List<int> idies)? getMultiCharacters,
+    TResult Function(String newUrl)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getMultiCharacters != null) {
@@ -438,6 +490,7 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
     required TResult Function(_getCharacters value) getCharacters,
     required TResult Function(_getSingleCharacters value) getSingleCharacters,
     required TResult Function(_getMultiCharacters value) getMultiCharacters,
+    required TResult Function(_getFilterCharacters value) getFilterCharacters,
   }) {
     return getMultiCharacters(this);
   }
@@ -448,6 +501,7 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
     TResult? Function(_getCharacters value)? getCharacters,
     TResult? Function(_getSingleCharacters value)? getSingleCharacters,
     TResult? Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult? Function(_getFilterCharacters value)? getFilterCharacters,
   }) {
     return getMultiCharacters?.call(this);
   }
@@ -458,6 +512,7 @@ class _$getMultiCharactersImpl implements _getMultiCharacters {
     TResult Function(_getCharacters value)? getCharacters,
     TResult Function(_getSingleCharacters value)? getSingleCharacters,
     TResult Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult Function(_getFilterCharacters value)? getFilterCharacters,
     required TResult orElse(),
   }) {
     if (getMultiCharacters != null) {
@@ -478,11 +533,158 @@ abstract class _getMultiCharacters implements CharacterEvent {
 }
 
 /// @nodoc
+abstract class _$$getFilterCharactersImplCopyWith<$Res> {
+  factory _$$getFilterCharactersImplCopyWith(_$getFilterCharactersImpl value,
+          $Res Function(_$getFilterCharactersImpl) then) =
+      __$$getFilterCharactersImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String newUrl});
+}
+
+/// @nodoc
+class __$$getFilterCharactersImplCopyWithImpl<$Res>
+    extends _$CharacterEventCopyWithImpl<$Res, _$getFilterCharactersImpl>
+    implements _$$getFilterCharactersImplCopyWith<$Res> {
+  __$$getFilterCharactersImplCopyWithImpl(_$getFilterCharactersImpl _value,
+      $Res Function(_$getFilterCharactersImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? newUrl = null,
+  }) {
+    return _then(_$getFilterCharactersImpl(
+      newUrl: null == newUrl
+          ? _value.newUrl
+          : newUrl // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$getFilterCharactersImpl implements _getFilterCharacters {
+  const _$getFilterCharactersImpl({required this.newUrl});
+
+  @override
+  final String newUrl;
+
+  @override
+  String toString() {
+    return 'CharacterEvent.getFilterCharacters(newUrl: $newUrl)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$getFilterCharactersImpl &&
+            (identical(other.newUrl, newUrl) || other.newUrl == newUrl));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, newUrl);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$getFilterCharactersImplCopyWith<_$getFilterCharactersImpl> get copyWith =>
+      __$$getFilterCharactersImplCopyWithImpl<_$getFilterCharactersImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String? name) getCharacters,
+    required TResult Function(int id) getSingleCharacters,
+    required TResult Function(List<int> idies) getMultiCharacters,
+    required TResult Function(String newUrl) getFilterCharacters,
+  }) {
+    return getFilterCharacters(newUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String? name)? getCharacters,
+    TResult? Function(int id)? getSingleCharacters,
+    TResult? Function(List<int> idies)? getMultiCharacters,
+    TResult? Function(String newUrl)? getFilterCharacters,
+  }) {
+    return getFilterCharacters?.call(newUrl);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String? name)? getCharacters,
+    TResult Function(int id)? getSingleCharacters,
+    TResult Function(List<int> idies)? getMultiCharacters,
+    TResult Function(String newUrl)? getFilterCharacters,
+    required TResult orElse(),
+  }) {
+    if (getFilterCharacters != null) {
+      return getFilterCharacters(newUrl);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_getCharacters value) getCharacters,
+    required TResult Function(_getSingleCharacters value) getSingleCharacters,
+    required TResult Function(_getMultiCharacters value) getMultiCharacters,
+    required TResult Function(_getFilterCharacters value) getFilterCharacters,
+  }) {
+    return getFilterCharacters(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_getCharacters value)? getCharacters,
+    TResult? Function(_getSingleCharacters value)? getSingleCharacters,
+    TResult? Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult? Function(_getFilterCharacters value)? getFilterCharacters,
+  }) {
+    return getFilterCharacters?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_getCharacters value)? getCharacters,
+    TResult Function(_getSingleCharacters value)? getSingleCharacters,
+    TResult Function(_getMultiCharacters value)? getMultiCharacters,
+    TResult Function(_getFilterCharacters value)? getFilterCharacters,
+    required TResult orElse(),
+  }) {
+    if (getFilterCharacters != null) {
+      return getFilterCharacters(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _getFilterCharacters implements CharacterEvent {
+  const factory _getFilterCharacters({required final String newUrl}) =
+      _$getFilterCharactersImpl;
+
+  String get newUrl;
+  @JsonKey(ignore: true)
+  _$$getFilterCharactersImplCopyWith<_$getFilterCharactersImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$CharacterState {
   Status get status => throw _privateConstructorUsedError;
   List<Character>? get character => throw _privateConstructorUsedError;
   Character? get singleCharacter => throw _privateConstructorUsedError;
-  Failure? get message => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CharacterStateCopyWith<CharacterState> get copyWith =>
@@ -499,7 +701,7 @@ abstract class $CharacterStateCopyWith<$Res> {
       {Status status,
       List<Character>? character,
       Character? singleCharacter,
-      Failure? message});
+      String? message});
 
   $CharacterCopyWith<$Res>? get singleCharacter;
 }
@@ -538,7 +740,7 @@ class _$CharacterStateCopyWithImpl<$Res, $Val extends CharacterState>
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as Failure?,
+              as String?,
     ) as $Val);
   }
 
@@ -567,7 +769,7 @@ abstract class _$$CharacterStateImplCopyWith<$Res>
       {Status status,
       List<Character>? character,
       Character? singleCharacter,
-      Failure? message});
+      String? message});
 
   @override
   $CharacterCopyWith<$Res>? get singleCharacter;
@@ -605,7 +807,7 @@ class __$$CharacterStateImplCopyWithImpl<$Res>
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
-              as Failure?,
+              as String?,
     ));
   }
 }
@@ -636,7 +838,7 @@ class _$CharacterStateImpl implements _CharacterState {
   @override
   final Character? singleCharacter;
   @override
-  final Failure? message;
+  final String? message;
 
   @override
   String toString() {
@@ -677,7 +879,7 @@ abstract class _CharacterState implements CharacterState {
       {final Status status,
       final List<Character>? character,
       final Character? singleCharacter,
-      final Failure? message}) = _$CharacterStateImpl;
+      final String? message}) = _$CharacterStateImpl;
 
   @override
   Status get status;
@@ -686,7 +888,7 @@ abstract class _CharacterState implements CharacterState {
   @override
   Character? get singleCharacter;
   @override
-  Failure? get message;
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$$CharacterStateImplCopyWith<_$CharacterStateImpl> get copyWith =>

@@ -10,10 +10,9 @@ class CharacterRepositoryImpl extends CharacterRepository {
     required this.characterDatasource,
   });
   @override
-  Future<Either<Failure, List<Character>>> getCharacters() async {
-    print('in repo');
+  Future<Either<Failure, List<Character>>> getCharacters(String? name) async {
     return await _getCharacter(
-      () => characterDatasource.getCharacters(),
+      () => characterDatasource.getCharacters(name),
     );
   }
 
@@ -30,6 +29,13 @@ class CharacterRepositoryImpl extends CharacterRepository {
       () => characterDatasource.getSingleCharacter(id),
     );
   }
+
+  @override
+  Future<Either<Failure, List<Character>>> getFilterCharacters(String newUrl) {
+    return _getFilterCharacter(
+      () => characterDatasource.getFilterCharacter(newUrl),
+    );
+  }
 }
 
 Future<Either<Failure, List<Character>>> _getCharacter(
@@ -39,7 +45,9 @@ Future<Either<Failure, List<Character>>> _getCharacter(
       await getCharacter(),
     );
   } catch (e) {
-    return Left(ServerFailure());
+    return Left(
+      ServerFailure(),
+    );
   }
 }
 
@@ -47,6 +55,15 @@ Future<Either<Failure, List<Character>>> _getMultiCharacter(
     Future<List<Character>> Function() getMultiCharacter) async {
   try {
     return Right(await getMultiCharacter());
+  } catch (e) {
+    return Left(ServerFailure());
+  }
+}
+
+Future<Either<Failure, List<Character>>> _getFilterCharacter(
+    Future<List<Character>> Function() getFilterCharacter) async {
+  try {
+    return Right(await getFilterCharacter());
   } catch (e) {
     return Left(ServerFailure());
   }

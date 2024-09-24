@@ -14,12 +14,15 @@ class CharacterAboutWidget extends StatelessWidget {
         Row(
           children: [
             Text(
-              '$secondText : ',
+              '$secondText :  ',
               style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
             ),
-            Text(
-              firstText,
-              style: const TextStyle(fontSize: 18),
+            Expanded(
+              child: Text(
+                firstText,
+                style: const TextStyle(
+                    fontSize: 18, overflow: TextOverflow.ellipsis),
+              ),
             )
           ],
         ),
