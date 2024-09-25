@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/features/rick_and_morty/character/data/model/character.dart';
@@ -16,7 +17,9 @@ class CharacterInfoWidget extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) {
-              return CharacterAboutScreen(id: character.id,);
+              return CharacterAboutScreen(
+                id: character.id,
+              );
             },
           ),
         );
@@ -24,7 +27,10 @@ class CharacterInfoWidget extends StatelessWidget {
       child: Container(
         width: 200,
         decoration: BoxDecoration(
-          border: Border.all(color: Colors.black),
+          border: Border.all(
+              color: AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark
+                  ? Colors.white
+                  : Colors.black),
           borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
         ),
         child: Column(

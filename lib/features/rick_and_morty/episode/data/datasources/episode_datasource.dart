@@ -35,7 +35,6 @@ class EpisodeDatasource {
 
   Future<List<Episode>> getFilter(String? urls) async {
     final url = '$baseUrl/episode/?$urls';
-    print(url);
 
     final responce = await dio.get(url);
     if (responce.statusCode == 200) {

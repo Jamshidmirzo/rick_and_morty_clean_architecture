@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/blocs/bloc/episode_bloc.dart';
-import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/widgets/episode_widget.dart';
+import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/widgets/episode_loaded_widget.dart';
 
 class EpisodeFilterScreen extends StatefulWidget {
   const EpisodeFilterScreen({super.key});
@@ -17,7 +17,6 @@ class _EpisodeFilterScreenState extends State<EpisodeFilterScreen>
   @override
   void initState() {
     super.initState();
-    print(episodeConstant);
     tabController = TabController(length: episodeConstant.length, vsync: this);
     context.read<EpisodeBloc>().add(EpisodeEvent.getFilterEpisodes(
         'episode=${episodeConstant.toList().first}'));
@@ -61,17 +60,7 @@ class _EpisodeFilterScreenState extends State<EpisodeFilterScreen>
             final episodes = state.episodes;
             return episodes == null
                 ? Container()
-                : ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 20,
-                    ),
-                    padding: const EdgeInsets.all(20),
-                    itemCount: episodes.length,
-                    itemBuilder: (context, index) {
-                      final episode = episodes[index];
-                      return EpisodeWidget(episode: episode);
-                    },
-                  );
+                : EpisodeLoadedWidget(episodes: episodes);
           }
           return Container();
         },

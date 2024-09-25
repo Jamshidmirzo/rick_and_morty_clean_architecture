@@ -60,7 +60,7 @@ class _TypeLocationFilterScreenState extends State<TypeLocationFilterScreen>
           if (state.status == Status.SUCCESS) {
             final locations = state.locations;
             return locations == null
-                ? Center(
+                ? const Center(
                     child: Text("Came null"),
                   )
                 : ListView.separated(

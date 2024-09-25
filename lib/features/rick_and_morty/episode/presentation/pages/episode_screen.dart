@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
+import 'package:rick_and_morty/features/rick_and_morty/allwidget/error_widget.dart';
+import 'package:rick_and_morty/features/rick_and_morty/allwidget/search_widget.dart';
 import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/blocs/bloc/episode_bloc.dart';
 import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/pages/filter/episode_filter_screen.dart';
-import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/widgets/episode_widget.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:rick_and_morty/features/rick_and_morty/episode/presentation/widgets/episode_loaded_widget.dart';
 
 class EpisodeScreen extends StatefulWidget {
   const EpisodeScreen({super.key});
@@ -37,62 +37,21 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
         appBar: AppBar(),
         body: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                left: 20.0,
-                right: 20,
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      onChanged: (value) => onChaged(value),
-                      controller: textController,
-                      decoration: InputDecoration(
-                        hintText: 'Search...',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  ZoomTapAnimation(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) {
-                            return const EpisodeFilterScreen();
-                          },
-                        ),
-                      );
-                    },
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          color: Colors.deepPurple.shade300),
-                      child: const Icon(
-                        CupertinoIcons.settings,
-                        color: Colors.white,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            SearchWidget(
+                onTapContainer: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EpisodeFilterScreen(),
+                      ));
+                },
+                onChanged: onChaged,
+                textController: textController),
             Expanded(
               child: BlocBuilder<EpisodeBloc, EpisodeState>(
                 builder: (context, state) {
                   if (state.status == Status.ERROR) {
-                    return Center(
-                      child: Text(state.failure ?? "Server Error"),
-                    );
+                    ErrorWidgetRick(message: state.failure);
                   }
                   if (state.status == Status.LOADING) {
                     return const Center(child: CircularProgressIndicator());
@@ -102,23 +61,11 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
                     final episodes = state.episodes;
                     return episodes == null
                         ? Container()
-                        : ListView.separated(
-                            separatorBuilder: (context, index) =>
-                                const SizedBox(
-                              height: 20,
-                            ),
-                            padding: const EdgeInsets.all(20),
-                            itemCount: episodes.length,
-                            itemBuilder: (context, index) {
-                              final episode = episodes[index];
-                              return EpisodeWidget(episode: episode);
-                            },
-                          );
+                        : EpisodeLoadedWidget(episodes: episodes);
                   }
                   return Container();
                 },
               ),
-          
             )
           ],
         ));

@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
+import 'package:rick_and_morty/features/rick_and_morty/allwidget/search_widget.dart';
 import 'package:rick_and_morty/features/rick_and_morty/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:rick_and_morty/features/rick_and_morty/location/presentation/pages/filter_screen/location_filter_screen.dart';
-import 'package:rick_and_morty/features/rick_and_morty/location/presentation/widgets/location_widget.dart';
-import 'package:zoom_tap_animation/zoom_tap_animation.dart';
+import 'package:rick_and_morty/features/rick_and_morty/location/presentation/widgets/location_loaded_wdiget.dart';
+
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});
@@ -43,55 +43,17 @@ class _LocationScreenState extends State<LocationScreen> {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 20.0,
-              right: 20,
-            ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: TextFormField(
-                    onChanged: (value) => onChaged(value),
-                    controller: textController,
-                    decoration: InputDecoration(
-                      hintText: 'Search...',
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                    ),
+          SearchWidget(
+              onTapContainer: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const LocationFilterScreen(),
                   ),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                ZoomTapAnimation(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return const LocationFilterScreen();
-                        },
-                      ),
-                    );
-                  },
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.deepPurple.shade300),
-                    child: const Icon(
-                      CupertinoIcons.settings,
-                      color: Colors.white,
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
+                );
+              },
+              onChanged: onChaged,
+              textController: textController),
           Expanded(
             child: BlocBuilder<LocationBloc, LocationState>(
               builder: (context, state) {
@@ -108,17 +70,12 @@ class _LocationScreenState extends State<LocationScreen> {
                   );
                 }
                 if (state.status == Status.SUCCESS) {
-                  return ListView.separated(
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 20,
-                    ),
-                    padding: const EdgeInsets.all(20),
-                    itemCount: state.locations?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final location = state.locations![index];
-                      return LocationWidget(location: location);
-                    },
-                  );
+                  final locations = state.locations;
+                  return locations == null
+                      ? const Center(
+                          child: Text("Came null"),
+                        )
+                      : LocationLoadedWdiget(locations: locations);
                 }
                 return const Center(
                   child: Text('No data available'),

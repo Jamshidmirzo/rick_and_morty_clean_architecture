@@ -38,7 +38,7 @@ class LocationDatasources {
 
   Future<List<LocationModel>> getFilterLocation(String urls) async {
     final url = '$baseUrl/location/?$urls';
-    print(url);
+  
     final responce = await dio.get(url);
     if (responce.statusCode == 200) {
       List<LocationModel> locations = (responce.data['results'] as List)
