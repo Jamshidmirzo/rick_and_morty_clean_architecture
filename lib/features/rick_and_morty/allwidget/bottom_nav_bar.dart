@@ -44,7 +44,8 @@ class _BottomNavBarState extends State<BottomNavBar> {
               label: ''),
           const BottomNavigationBarItem(
               icon: Icon(Icons.location_on), label: ''),
-          const BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
+          const BottomNavigationBarItem(
+              icon: Icon(Icons.control_camera_sharp), label: ''),
           const BottomNavigationBarItem(
               icon: Icon(
                 CupertinoIcons.settings,
