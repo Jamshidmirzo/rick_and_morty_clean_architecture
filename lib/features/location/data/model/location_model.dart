@@ -1,0 +1,22 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'location_model.freezed.dart';
+part 'location_model.g.dart';
+
+@freezed
+class LocationModel with _$LocationModel {
+  factory LocationModel({
+    required int id,
+    required String name,
+    required String type,
+    required String dimension,
+    required List<String> residents,
+    required String url,
+    required String created,
+  }) = _LocationModel;
+
+  factory LocationModel.fromJson(Map<String, dynamic> json) =>
+      _$LocationModelFromJson(json);
+
+  
+}
