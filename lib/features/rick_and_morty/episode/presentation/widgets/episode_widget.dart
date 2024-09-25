@@ -25,14 +25,15 @@ class EpisodeWidget extends StatelessWidget {
         width: double.infinity,
         height: 100,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20), color: Colors.amber
-            // image: const DecorationImage(
-            //   fit: BoxFit.cover,
-            //   image: AssetImage(
-            //     'assets/images/episode.png',
-            //   ),
-            // ),
+          borderRadius: BorderRadius.circular(20),
+          image: const DecorationImage(
+            fit: BoxFit.cover,
+            opacity: 0.5,
+            image: AssetImage(
+              'assets/images/morty.png',
             ),
+          ),
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -51,6 +52,5 @@ class EpisodeWidget extends StatelessWidget {
         ),
       ),
     );
-    
   }
 }

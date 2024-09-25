@@ -1,7 +1,7 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty/features/rick_and_morty/settings/presentation/pages/blocs/cubit/theme_cubit.dart';
+import 'package:rick_and_morty/features/rick_and_morty/settings/presentation/blocs/cubit/theme_cubit.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
