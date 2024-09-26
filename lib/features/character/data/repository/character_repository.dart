@@ -38,6 +38,11 @@ class CharacterRepositoryImpl extends CharacterRepository {
   }
 }
 
+
+
+
+
+
 Future<Either<Failure, List<Character>>> _getCharacter(
     Future<List<Character>> Function() getCharacter) async {
   try {

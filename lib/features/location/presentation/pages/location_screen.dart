@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
+import 'package:rick_and_morty/core/widgets/error_widget.dart';
 import 'package:rick_and_morty/core/widgets/loading_widget.dart';
 import 'package:rick_and_morty/core/widgets/search_widget.dart';
 import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
@@ -22,47 +23,55 @@ class _LocationScreenState extends State<LocationScreen> {
       appBar: AppBar(
         title: const Text('Locations'),
       ),
-      body: Column(
-        children: [
-          SearchWidget(
-              onTapContainer: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const LocationFilterScreen(),
-                  ),
-                );
-              },
-              onChanged: onChaged,
-              textController: textController),
-          Expanded(
-            child: BlocBuilder<LocationBloc, LocationState>(
-              builder: (context, state) {
-                if (state.status == Status.ERROR) {
-                  return Center(
-                    child: Text(
-                      state.failure ?? "Smth get wrong",
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(const Duration(seconds: 1)).then(
+            (_) {
+              context.read<LocationBloc>().add(
+                    const LocationEvent.getAllLocation(null),
+                  );
+              textController.clear();
+            },
+          );
+        },
+        child: Column(
+          children: [
+            SearchWidget(
+                onTapContainer: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LocationFilterScreen(),
                     ),
                   );
-                }
-                if (state.status == Status.LOADING) {
-                  return const LoadingWidget();
-                }
-                if (state.status == Status.SUCCESS) {
-                  final locations = state.locations;
-                  return locations == null
-                      ? const Center(
-                          child: Text("Came null"),
-                        )
-                      : LocationLoadedWdiget(locations: locations);
-                }
-                return const Center(
-                  child: Text('No data available'),
-                );
-              },
+                },
+                onChanged: onChaged,
+                textController: textController),
+            Expanded(
+              child: BlocBuilder<LocationBloc, LocationState>(
+                builder: (context, state) {
+                  if (state.status == Status.ERROR) {
+                    return ErrorWidgetRick(message: state.failure);
+                  }
+                  if (state.status == Status.LOADING) {
+                    return const LoadingWidget();
+                  }
+                  if (state.status == Status.SUCCESS) {
+                    final locations = state.locations;
+                    return locations == null
+                        ? const Center(
+                            child: Text("Came null"),
+                          )
+                        : LocationLoadedWdiget(locations: locations);
+                  }
+                  return const Center(
+                    child: Text('No data available'),
+                  );
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

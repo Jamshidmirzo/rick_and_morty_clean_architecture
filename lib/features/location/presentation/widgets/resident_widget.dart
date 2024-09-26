@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/presentation/bloc/bloc/character_bloc.dart';
 import 'package:rick_and_morty/features/character/presentation/pages/character_about_screen.dart';
@@ -36,7 +37,7 @@ class ResidentWidget extends StatelessWidget {
             image: NetworkImage(character.image),
           ),
           color: Colors.amber,
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
         ),
       ),
     );

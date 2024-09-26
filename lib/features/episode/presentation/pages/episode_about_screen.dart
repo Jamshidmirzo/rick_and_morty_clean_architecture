@@ -23,7 +23,7 @@ class _EpisodeAboutScreenState extends State<EpisodeAboutScreen> {
       body: BlocBuilder<EpisodeBloc, EpisodeState>(
         builder: (context, state) {
           if (state.status == Status.ERROR) {
-            ErrorWidgetRick(message: state.failure);
+          return ErrorWidgetRick(message: state.failure);
           }
           if (state.status == Status.LOADING) {
             return const LoadingWidget();

@@ -27,7 +27,6 @@ import 'package:rick_and_morty/features/location/presentation/blocs/bloc/locatio
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  // final shared = await SharedPreferences.getInstance();
   sl.registerFactory(() => CharacterBloc(
       getFilterCharacterUsecase: sl<GetFilterCharacterUsecase>(),
       getAllCharactersUsecases: sl<GetAllCharactersUsecases>(),

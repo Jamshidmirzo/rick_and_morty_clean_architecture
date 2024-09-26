@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/presentation/widgets/character_info_widget.dart';
 
@@ -9,7 +10,7 @@ class CharacterLoadedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(AppDimens.PADDING_20),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: 20,
@@ -21,6 +22,5 @@ class CharacterLoadedWidget extends StatelessWidget {
         return CharacterInfoWidget(character: character2);
       },
     );
-    
   }
 }

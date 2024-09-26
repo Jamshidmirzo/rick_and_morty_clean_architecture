@@ -16,14 +16,13 @@ void main(List<String> args) async {
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
-
   @override
   State<MyApp> createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   final _themeCubit = ThemeCubit();
- 
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -34,9 +33,9 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         BlocProvider.value(value: _themeCubit),
       ],
       child: BlocBuilder<ThemeCubit, ThemeData>(
-        builder: (context, isDarkMode) {
+        builder: (context, themeMode) {
           return MaterialApp(
-            theme: isDarkMode,
+            theme: themeMode,
             debugShowCheckedModeBanner: false,
             home: const BottomNavBar(),
           );
@@ -45,7 +44,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     );
   }
 
-   @override
+  @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
@@ -61,5 +60,4 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         WidgetsBinding.instance.platformDispatcher.platformBrightness;
     _themeCubit.changeTheme(newBrightness);
   }
-
 }

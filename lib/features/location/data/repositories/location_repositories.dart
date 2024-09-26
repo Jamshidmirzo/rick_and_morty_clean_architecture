@@ -49,6 +49,13 @@ class LocationRepositoriesImpl extends LocationRepositories {
   }
 }
 
+
+
+
+
+
+
+
 Future<Either<Failure, List<LocationModel>>> _getFilterLocation(
     Future<List<LocationModel>> Function() filter) async {
   try {

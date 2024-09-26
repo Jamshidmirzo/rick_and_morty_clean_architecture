@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:rick_and_morty/core/constants/constants.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
 import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
 import 'package:rick_and_morty/features/location/presentation/pages/location_about_screen.dart';
@@ -19,47 +18,63 @@ class LocationWidget extends StatelessWidget {
           context,
           MaterialPageRoute(
             builder: (context) => LocationAboutScreen(
-              residents: location.residents,
-              id: location.id
-            ),
+                residents: location.residents, id: location.id),
           ),
         );
       },
       child: BlocBuilder<LocationBloc, LocationState>(
         builder: (context, state) {
-          if (state.status == Status.SUCCESS &&
-              state.singleLocation != null &&
-              state.characters != null) {}
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                height: 150,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  image: const DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage('assets/images/earth.png'),
+          return Container(
+            height: MediaQuery.of(context).size.height * 0.27,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+              border: Border.all(
+                  color: Brightness.dark ==
+                          WidgetsBinding
+                              .instance.platformDispatcher.platformBrightness
+                      ? Colors.white
+                      : Colors.black),
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+                    image: const DecorationImage(
+                      fit: BoxFit.cover,
+                      image: AssetImage('assets/images/earth.png'),
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 10),
-              Text(
-                location.name,
-                style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(AppDimens.PADDING_10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        location.name,
+                        style: const TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      Text(
+                        'Dimension: ${location.dimension}',
+                        style: const TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              Text(
-                'Dimension: ${location.dimension}',
-                style: const TextStyle(
-                  color: Colors.grey,
-                  fontSize: 14,
-                ),
-              ),
-            ],
+              ],
+            ),
           );
         },
       ),

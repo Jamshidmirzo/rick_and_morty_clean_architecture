@@ -16,7 +16,7 @@ class TypeLocationFilterScreen extends StatefulWidget {
 class _TypeLocationFilterScreenState extends State<TypeLocationFilterScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
- 
+  final List<dynamic> types = locationTypeConstant.toList();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +28,9 @@ class _TypeLocationFilterScreenState extends State<TypeLocationFilterScreen>
           isScrollable: true,
           controller: tabController,
           tabs: [
-            for (int i = 0; i < locationTypeConstant.length; i++)
+            for (int i = 0; i < types.length; i++)
               Tab(
-                text: locationTypeConstant.toList()[i],
+                text: types[i],
               ),
           ],
         ),
@@ -59,15 +59,16 @@ class _TypeLocationFilterScreenState extends State<TypeLocationFilterScreen>
       ),
     );
   }
-   @override
+
+  @override
   void initState() {
     super.initState();
     tabController =
-        TabController(length: locationTypeConstant.length, vsync: this);
+        TabController(length: types.length, vsync: this);
   }
 
   _onchanged(int index) {
     context.read<LocationBloc>().add(LocationEvent.getFilterLocation(
-        'type=${locationTypeConstant.toList()[index]}'));
+        'type=${types[index]}'));
   }
 }

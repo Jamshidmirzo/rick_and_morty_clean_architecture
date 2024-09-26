@@ -29,7 +29,7 @@ class EpisodeBloc extends Bloc<EpisodeEvent, EpisodeState> {
     this.getCharacterEpisodeUsecase,
     this.getMultiEpisodeUsecase,
     this.getSingleEpisodeUsecases,
-  ) : super(EpisodeState(status: Status.LOADING)) {
+  ) : super(EpisodeState()) {
     on<EpisodeEvent>((event, emit) {});
     on<_getEpisodes>(_getAll);
     on<_getSingleEpisodes>(_getSingle);

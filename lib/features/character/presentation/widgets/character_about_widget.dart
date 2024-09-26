@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/extensions/extension.dart';
 
 class CharacterAboutWidget extends StatelessWidget {
   final String firstText;
@@ -26,9 +27,7 @@ class CharacterAboutWidget extends StatelessWidget {
             )
           ],
         ),
-        const SizedBox(
-          height: 20,
-        ),
+        20.sH(),
       ],
     );
   }

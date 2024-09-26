@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
+import 'package:rick_and_morty/core/extensions/extension.dart';
+import 'package:rick_and_morty/core/widgets/date_widget.dart';
+import 'package:rick_and_morty/core/widgets/photo_widget.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/presentation/widgets/episode_about_widget.dart';
@@ -14,34 +18,31 @@ class EpisodeAboutLoadedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.3,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            image: const DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage('assets/images/episode.png')),
-          ),
+        const PhotoWidget(
+          url: AssetImage('assets/images/episode.png'),
         ),
-        const SizedBox(height: 20),
+        20.sH(),
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(AppDimens.PADDING_20),
           child: Container(
             padding: const EdgeInsets.all(10),
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.2,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
+              borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
               border: Border.all(
-                color: Colors.black,
+                color: Brightness.dark ==
+                        WidgetsBinding
+                            .instance.platformDispatcher.platformBrightness
+                    ? Colors.white
+                    : Colors.black,
               ),
             ),
             child: Column(
               children: [
                 EpisodeAboutWidget(firstText: episode.name, secondText: 'Name'),
                 EpisodeAboutWidget(
-                    firstText: _getDate(episode.created),
+                    firstText: GetDate.getDate(episode.created),
                     secondText: 'Created'),
                 EpisodeAboutWidget(
                     firstText: episode.air_date, secondText: 'Air Date'),
@@ -52,6 +53,7 @@ class EpisodeAboutLoadedWidget extends StatelessWidget {
         SizedBox(
           height: MediaQuery.of(context).size.height * 0.1,
           child: ListView.separated(
+            padding: const EdgeInsets.only(left: AppDimens.PADDING_20),
             separatorBuilder: (context, index) => const SizedBox(
               width: 10,
             ),
@@ -65,10 +67,5 @@ class EpisodeAboutLoadedWidget extends StatelessWidget {
         ),
       ],
     );
-  }
-
-  String _getDate(String date) {
-    DateTime dateTime = DateTime.parse(date);
-    return '${dateTime.day}-${dateTime.month}-${dateTime.year}';
   }
 }

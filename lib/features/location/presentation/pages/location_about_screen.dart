@@ -25,7 +25,7 @@ class _LocationAboutScreenState extends State<LocationAboutScreen> {
       body: BlocBuilder<LocationBloc, LocationState>(
         builder: (context, state) {
           if (state.status == Status.ERROR) {
-            ErrorWidgetRick(message: state.failure);
+          return  ErrorWidgetRick(message: state.failure);
           }
           if (state.status == Status.LOADING) {
             return const LoadingWidget();

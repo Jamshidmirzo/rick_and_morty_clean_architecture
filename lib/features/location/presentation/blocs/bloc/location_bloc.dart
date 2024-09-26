@@ -28,8 +28,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     required this.getAllLocationUsecases,
     required this.getMultiLocationUsecases,
     required this.getSingleLocationUsecases,
-  }) : super(LocationState(status: Status.LOADING)) {
-    on<LocationEvent>((event, emit) {});
+  }) : super(LocationState()) {
     on<_getAllLocation>(_getAll);
     on<_getSingleLocation>(_getSingle);
     on<_getMultiLocation>(_getMulti);
@@ -41,8 +40,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
   Future<void> _getFilterLocations(
       _getFilterLocation event, Emitter<LocationState> emit) async {
     emit(state.copyWith(status: Status.LOADING));
-    final responce=await getFilterLocationsUsecases(FilterLocations(urls: event.url));
-
+    final responce =
+        await getFilterLocationsUsecases(FilterLocations(urls: event.url));
     responce.fold(
       (error) {
         emit(
@@ -138,7 +137,8 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     );
     responce.fold(
       (error) {
-        emit(state.copyWith(status: Status.ERROR, failure: _failureMessage(error)));
+        emit(state.copyWith(
+            status: Status.ERROR, failure: _failureMessage(error)));
       },
       (data) {
         emit(
@@ -169,8 +169,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
     );
   }
 
-
-    String _failureMessage(Failure failure) {
+  String _failureMessage(Failure failure) {
     if (failure is ServerFailure) {
       return 'Server Error';
     } else if (failure is CacheFailure) {

@@ -1,5 +1,9 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
+import 'package:rick_and_morty/core/extensions/extension.dart';
+import 'package:rick_and_morty/core/widgets/date_widget.dart';
+import 'package:rick_and_morty/core/widgets/photo_widget.dart';
 
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
@@ -19,29 +23,28 @@ class LocationAboutLoadedWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.3,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(20),
-            image: const DecorationImage(
-              fit: BoxFit.cover,
-              image: NetworkImage(
-                  'https://cdn.vectorstock.com/i/500p/82/99/no-image-available-like-missing-picture-vector-43938299.jpg'),
-            ),
-          ),
+        const PhotoWidget(
+          url: NetworkImage(
+              'https://cdn.vectorstock.com/i/500p/82/99/no-image-available-like-missing-picture-vector-43938299.jpg'),
         ),
-        const SizedBox(height: 20),
+        20.sH(),
         Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(AppDimens.PADDING_20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: const EdgeInsets.all(20),
+                height: MediaQuery.of(context).size.height * 0.2,
+                padding: const EdgeInsets.all(AppDimens.PADDING_20),
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: Colors.black),
+                  borderRadius:
+                      BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
+                  border: Border.all(
+                      color: Brightness.dark ==
+                              WidgetsBinding.instance.platformDispatcher
+                                  .platformBrightness
+                          ? Colors.white
+                          : Colors.black),
                 ),
                 child: Column(
                   children: [
@@ -50,25 +53,21 @@ class LocationAboutLoadedWidget extends StatelessWidget {
                     LocationAboutWidget(
                         firstText: location.type, secondText: "Type"),
                     LocationAboutWidget(
-                        firstText: _getDate(location.created),
+                        firstText: GetDate.getDate(location.created),
                         secondText: "Date"),
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              20.sH(),
               const Text(
                 'Residents',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-              const SizedBox(
-                height: 20,
-              ),
+             20.sH(),
               SizedBox(
-                height: 100,
+                height: MediaQuery.of(context).size.height * 0.10,
                 child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(
-                    width: 10,
-                  ),
+                  separatorBuilder: (context, index) => 10.sW(),
                   scrollDirection: Axis.horizontal,
                   itemCount: character.length,
                   itemBuilder: (context, index) {
@@ -82,10 +81,5 @@ class LocationAboutLoadedWidget extends StatelessWidget {
         )
       ],
     );
-  }
-
-  String _getDate(String date) {
-    DateTime dateTime = DateTime.parse(date);
-    return '${dateTime.day}-${dateTime.month}-${dateTime.year}';
   }
 }

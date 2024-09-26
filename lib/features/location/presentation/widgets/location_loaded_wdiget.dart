@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
+import 'package:rick_and_morty/core/extensions/extension.dart';
 
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
 import 'package:rick_and_morty/features/location/presentation/widgets/location_widget.dart';
@@ -14,16 +16,13 @@ class LocationLoadedWdiget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.separated(
-      separatorBuilder: (context, index) => const SizedBox(
-        height: 20,
-      ),
-      padding: const EdgeInsets.all(20),
+      separatorBuilder: (context, index) => 20.sH(),
+      padding: const EdgeInsets.all(AppDimens.PADDING_20),
       itemCount: locations.length,
       itemBuilder: (context, index) {
         final location = locations[index];
         return LocationWidget(location: location);
       },
     );
-    
   }
 }

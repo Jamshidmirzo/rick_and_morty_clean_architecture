@@ -20,21 +20,16 @@ class CharacterDatasource {
       url = '$baseUrl/character';
     }
     final responce = await dio.get(url);
-    Set status = {};
-    Set species = {};
-    Set gender = {};
+
     if (responce.statusCode == 200) {
       List<Character> characters = (responce.data['results'] as List)
           .map((data) => Character.fromJson(data))
           .toList();
       for (var element in characters) {
-        status.add(element.status);
-        species.add(element.species);
-        gender.add(element.gender);
+        statusConstant.add(element.status);
+        speciesConstant.add(element.species);
+        genderConstant.add(element.gender);
       }
-      statusConstant = status;
-      speciesConstant = species;
-      genderConstant = gender;
 
       return characters;
     } else {

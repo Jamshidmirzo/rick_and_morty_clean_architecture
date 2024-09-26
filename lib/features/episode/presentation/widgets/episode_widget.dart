@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/presentation/pages/episode_about_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -25,7 +26,7 @@ class EpisodeWidget extends StatelessWidget {
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.1,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
           image: const DecorationImage(
             fit: BoxFit.cover,
             opacity: 0.5,

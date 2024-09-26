@@ -22,39 +22,49 @@ class _EpisodeScreenState extends State<EpisodeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          SearchWidget(
-              onTapContainer: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const EpisodeFilterScreen(),
-                    ));
-              },
-              onChanged: onChaged,
-              textController: textController),
-          Expanded(
-            child: BlocBuilder<EpisodeBloc, EpisodeState>(
-              builder: (context, state) {
-                if (state.status == Status.ERROR) {
-                  ErrorWidgetRick(message: state.failure);
-                }
-                if (state.status == Status.LOADING) {
-                  return const LoadingWidget();
-                }
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(const Duration(seconds: 1)).then((_) {
+            context
+                .read<EpisodeBloc>()
+                .add(const EpisodeEvent.getEpisodes(null));
+            textController.clear();
+          });
+        },
+        child: Column(
+          children: [
+            SearchWidget(
+                onTapContainer: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EpisodeFilterScreen(),
+                      ));
+                },
+                onChanged: onChaged,
+                textController: textController),
+            Expanded(
+              child: BlocBuilder<EpisodeBloc, EpisodeState>(
+                builder: (context, state) {
+                  if (state.status == Status.ERROR) {
+                    return ErrorWidgetRick(message: state.failure);
+                  }
+                  if (state.status == Status.LOADING) {
+                    return const LoadingWidget();
+                  }
 
-                if (state.status == Status.SUCCESS) {
-                  final episodes = state.episodes;
-                  return episodes == null
-                      ? Container()
-                      : EpisodeLoadedWidget(episodes: episodes);
-                }
-                return Container();
-              },
-            ),
-          )
-        ],
+                  if (state.status == Status.SUCCESS) {
+                    final episodes = state.episodes;
+                    return episodes == null
+                        ? Container()
+                        : EpisodeLoadedWidget(episodes: episodes);
+                  }
+                  return Container();
+                },
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

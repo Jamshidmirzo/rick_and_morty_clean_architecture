@@ -26,7 +26,11 @@ class CharacterInfoWidget extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: Colors.black,
+            color: Brightness.dark ==
+                    WidgetsBinding
+                        .instance.platformDispatcher.platformBrightness
+                ? Colors.white
+                : Colors.black,
           ),
           borderRadius: BorderRadius.circular(AppDimens.BORDER_RADIUS_20),
         ),
@@ -61,8 +65,3 @@ class CharacterInfoWidget extends StatelessWidget {
     );
   }
 }
-
-
-// AdaptiveTheme.of(context).mode == AdaptiveThemeMode.dark
-//                   ? Colors.white
-//                   : Colors.black),

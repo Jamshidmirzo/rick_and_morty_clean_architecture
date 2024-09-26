@@ -21,38 +21,49 @@ class _CharacterScreenState extends State<CharacterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: Column(
-        children: [
-          SearchWidget(
-              onTapContainer: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FilterCharacterScreen(),
+      body: RefreshIndicator(
+        onRefresh: () {
+          return Future.delayed(const Duration(seconds: 1)).then((_) {
+            context.read<CharacterBloc>().add(
+                  const CharacterEvent.getCharacters(null),
+                );
+            textController.clear();
+          });
+        },
+        child: Column(
+          children: [
+            SearchWidget(
+                onTapContainer: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FilterCharacterScreen(),
+                      ),
                     ),
-                  ),
-              onChanged: onChaged,
-              textController: textController),
-          Expanded(
-            child: BlocBuilder<CharacterBloc, CharacterState>(
-              builder: (context, state) {
-                if (state.status == Status.ERROR) {
-                  return ErrorWidgetRick(message: state.message);
-                }
-                if (state.status == Status.LOADING) {
-                  return const LoadingWidget();
-                }
-                if (state.status == Status.SUCCESS) {
-                  return state.character != null
-                      ? CharacterLoadedWidget(character: state.character!)
-                      : const Center(
-                          child: Text("Smth getn worng"),
-                        );
-                }
-                return Container();
-              },
+                onChanged: onChaged,
+                textController: textController),
+            Expanded(
+              child: BlocBuilder<CharacterBloc, CharacterState>(
+                builder: (context, state) {
+                  if (state.status == Status.ERROR) {
+                    return ErrorWidgetRick(message: state.message);
+                  }
+                  if (state.status == Status.LOADING) {
+                    return const LoadingWidget();
+                  }
+                  if (state.status == Status.SUCCESS) {
+                    final characters = state.character;
+                    return characters != null
+                        ? CharacterLoadedWidget(character: characters)
+                        : const Center(
+                            child: Text("Smth getn worng"),
+                          );
+                  }
+                  return Container();
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

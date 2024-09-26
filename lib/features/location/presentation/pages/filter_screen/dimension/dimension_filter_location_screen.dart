@@ -17,6 +17,7 @@ class _DimensionFilterLocationScreenState
     extends State<DimensionFilterLocationScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  final List<dynamic> dimensions = locationDimensionConstant.toList();
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,9 @@ class _DimensionFilterLocationScreenState
           isScrollable: true,
           controller: tabController,
           tabs: [
-            for (int i = 0; i < locationDimensionConstant.length; i++)
+            for (int i = 0; i < dimensions.length; i++)
               Tab(
-                text: locationDimensionConstant.toList()[i],
+                text: dimensions[i],
               ),
           ],
         ),
@@ -64,12 +65,12 @@ class _DimensionFilterLocationScreenState
   @override
   void initState() {
     super.initState();
-    tabController =
-        TabController(length: locationDimensionConstant.length, vsync: this);
+    tabController = TabController(length: dimensions.length, vsync: this);
   }
 
   _onChanged(int index) {
-    context.read<LocationBloc>().add(LocationEvent.getFilterLocation(
-        'dimension=${locationDimensionConstant.toList()[index]}'));
+    context
+        .read<LocationBloc>()
+        .add(LocationEvent.getFilterLocation('dimension=${dimensions[index]}'));
   }
 }
