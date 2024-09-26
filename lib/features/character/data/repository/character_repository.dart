@@ -5,7 +5,7 @@ import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/repository/character_repository.dart';
 
 class CharacterRepositoryImpl extends CharacterRepository {
-  CharacterDatasource characterDatasource;
+  CharacterRemote characterDatasource;
   CharacterRepositoryImpl({
     required this.characterDatasource,
   });
@@ -37,11 +37,6 @@ class CharacterRepositoryImpl extends CharacterRepository {
     );
   }
 }
-
-
-
-
-
 
 Future<Either<Failure, List<Character>>> _getCharacter(
     Future<List<Character>> Function() getCharacter) async {

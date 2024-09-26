@@ -8,7 +8,7 @@ import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/domain/repositories/episode_repositories.dart';
 
 class EpisodeRepositriesImpl extends EpisodeRepositories {
-  EpisodeDatasource episodeDatasource;
+  EpisodeRemote episodeDatasource;
   EpisodeRepositriesImpl({
     required this.episodeDatasource,
   });

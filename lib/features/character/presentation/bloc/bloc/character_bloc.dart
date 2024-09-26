@@ -25,7 +25,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       required this.getMultiCharacters,
       required this.getSingleCharactersUsecases})
       : super(
-          CharacterState(status: Status.LOADING),
+          CharacterState(),
         ) {
     on<_getCharacters>(_getCharacter);
     on<_getSingleCharacters>(_getSingleCharacter);
@@ -38,7 +38,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     emit(state.copyWith(status: Status.LOADING));
 
     final responce = await getFilterCharacterUsecase(
-      FilterCharacterParams(newUrl: event.newUrl),);
+        FilterCharacterParams(newUrl: event.newUrl));
     responce.fold(
       (error) {
         emit(
@@ -78,7 +78,9 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
 
   Future<void> _getSingleCharacter(
       _getSingleCharacters event, Emitter<CharacterState> emit) async {
-    emit(state.copyWith(status: Status.LOADING));
+    emit(
+      state.copyWith(status: Status.LOADING),
+    );
 
     final responce = await getSingleCharactersUsecases(
       SingleCharacter(id: event.id),
@@ -110,7 +112,10 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
     responce.fold(
       (error) {
         emit(
-          state.copyWith(status: Status.ERROR, message: _failureMessage(error)),
+          state.copyWith(
+            status: Status.ERROR,
+            message: _failureMessage(error),
+          ),
         );
       },
       (data) {
@@ -120,6 +125,7 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       },
     );
   }
+
 
   String _failureMessage(Failure failure) {
     switch (failure) {

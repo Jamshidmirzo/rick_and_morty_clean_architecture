@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/widgets/buttons_for_filter.dart';
 import 'package:rick_and_morty/features/character/presentation/pages/filter_screens/gendeer/gender_filter_screen.dart';
 import 'package:rick_and_morty/features/character/presentation/pages/filter_screens/sort/sort_filter_screen.dart';
@@ -12,26 +13,28 @@ class FilterCharacterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(AppDimens.PADDING_20),
         child: Column(
           children: [
             ButtonsForFilter(
-                text: 'Filter by sort',
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const SortFilterScreen(),
-                    ),
-                  );
-                }),
+              text: 'Filter by sort',
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SortFilterScreen(),
+                  ),
+                );
+              },
+            ),
             ButtonsForFilter(
               text: 'Filter by species',
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const SpeciesFilterScreen()),
+                    builder: (context) => const SpeciesFilterScreen(),
+                  ),
                 );
               },
             ),
@@ -41,7 +44,8 @@ class FilterCharacterScreen extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const GenderFilterScreen()),
+                    builder: (context) => const GenderFilterScreen(),
+                  ),
                 );
               },
             ),

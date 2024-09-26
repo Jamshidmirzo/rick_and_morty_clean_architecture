@@ -5,14 +5,23 @@ import 'package:rick_and_morty/core/usecase/exception.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
 
-class LocationDatasources {
+abstract class LocationRemote {
+  Future<List<LocationModel>> getAllLocation(String? name);
+  Future<List<LocationModel>> getFilterLocation(String urls);
+  Future<List<LocationModel>> getMultiLocation(List<int> idies);
+  Future<LocationModel> getSingleLocation(int id);
+  Future<List<Character>> getCharacters(List<String> urls);
+}
+
+class LocationDatasources extends LocationRemote {
   Dio dio;
   LocationDatasources({
     required this.dio,
   }) {
     dio.interceptors.add(InterCeptor());
   }
-
+  
+  @override
   Future<List<LocationModel>> getAllLocation(String? name) async {
     String url = '';
     if (name != null) {
@@ -38,6 +47,7 @@ class LocationDatasources {
     }
   }
 
+  @override
   Future<List<LocationModel>> getFilterLocation(String urls) async {
     final url = '$baseUrl/location/?$urls';
 
@@ -54,6 +64,7 @@ class LocationDatasources {
     }
   }
 
+  @override
   Future<List<LocationModel>> getMultiLocation(List<int> idies) async {
     final url = '$baseUrl/location/$idies';
     final responce = await dio.get(url);
@@ -69,6 +80,7 @@ class LocationDatasources {
     }
   }
 
+  @override
   Future<LocationModel> getSingleLocation(int id) async {
     final url = '$baseUrl/location/$id';
     final responce = await dio.get(url);
@@ -79,6 +91,7 @@ class LocationDatasources {
     }
   }
 
+  @override
   Future<List<Character>> getCharacters(List<String> urls) async {
     List<Character> characters = [];
     for (var element in urls) {

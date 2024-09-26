@@ -27,6 +27,7 @@ import 'package:rick_and_morty/features/location/presentation/blocs/bloc/locatio
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  //character bloc
   sl.registerFactory(() => CharacterBloc(
       getFilterCharacterUsecase: sl<GetFilterCharacterUsecase>(),
       getAllCharactersUsecases: sl<GetAllCharactersUsecases>(),
@@ -57,6 +58,8 @@ Future<void> init() async {
     ),
   );
 
+
+//location bloc
   sl.registerFactory(() => LocationBloc(
       getFilterLocationsUsecases: sl<GetFilterLocationsUsecases>(),
       getCharactersUsecases: sl<GetCharactersUsecases>(),
@@ -75,9 +78,10 @@ Future<void> init() async {
       locationRepositoriesImpl: sl<LocationRepositoriesImpl>()));
   sl.registerFactory(() =>
       LocationRepositoriesImpl(locationDatasources: sl<LocationDatasources>()));
-
   sl.registerFactory(() => LocationDatasources(dio: Dio()));
 
+
+//episode bloc
   sl.registerFactory(
     () => EpisodeBloc(
         sl<GetFilterEpisodeUsecases>(),

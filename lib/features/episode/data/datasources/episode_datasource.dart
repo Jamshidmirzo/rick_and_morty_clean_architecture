@@ -5,14 +5,22 @@ import 'package:rick_and_morty/core/usecase/exception.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 
-class EpisodeDatasource {
+abstract class EpisodeRemote {
+  Future<List<Episode>> getAll(String? name);
+  Future<List<Episode>> getFilter(String? urls);
+  Future<List<Episode>> getMulti(List<int> idies);
+  Future<Episode> getSingle(int id);
+  Future<List<Character>> getCharacter(List<String> urles);
+}
+
+class EpisodeDatasource extends EpisodeRemote {
   Dio dio;
   EpisodeDatasource({
     required this.dio,
   }) {
     dio.interceptors.add(InterCeptor());
   }
-
+  @override
   Future<List<Episode>> getAll(String? name) async {
     String url = '';
     if (name != null) {
@@ -35,6 +43,7 @@ class EpisodeDatasource {
     }
   }
 
+  @override
   Future<List<Episode>> getFilter(String? urls) async {
     final url = '$baseUrl/episode/?$urls';
 
@@ -53,6 +62,7 @@ class EpisodeDatasource {
     }
   }
 
+  @override
   Future<List<Episode>> getMulti(List<int> idies) async {
     final url = '$baseUrl/episode/$idies';
     final responce = await dio.get(url);
@@ -66,6 +76,7 @@ class EpisodeDatasource {
     }
   }
 
+  @override
   Future<Episode> getSingle(int id) async {
     final url = '$baseUrl/episode/$id';
     final responce = await dio.get(url);
@@ -77,6 +88,7 @@ class EpisodeDatasource {
     }
   }
 
+  @override
   Future<List<Character>> getCharacter(List<String> urles) async {
     List<Character> characters = [];
     for (var element in urles) {

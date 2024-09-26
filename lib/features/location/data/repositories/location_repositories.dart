@@ -8,7 +8,7 @@ import 'package:rick_and_morty/features/location/data/model/location_model.dart'
 import 'package:rick_and_morty/features/location/domain/repositories/location_repositories.dart';
 
 class LocationRepositoriesImpl extends LocationRepositories {
-  LocationDatasources locationDatasources;
+   LocationRemote locationDatasources;
   LocationRepositoriesImpl({
     required this.locationDatasources,
   });

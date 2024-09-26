@@ -38,7 +38,9 @@ class _CharacterAboutScreenState extends State<CharacterAboutScreen> {
                 ? const Center(
                     child: Text("error when getting character"),
                   )
-                : CharacterAboutLoadedWidget(character: character);
+                : CharacterAboutLoadedWidget(
+                    character: character,
+                  );
           }
           return Container();
         },
@@ -54,7 +56,9 @@ class _CharacterAboutScreenState extends State<CharacterAboutScreen> {
 
   fetchData() {
     context.read<CharacterBloc>().add(
-          CharacterEvent.getSingleCharacters(id: widget.id),
+          CharacterEvent.getSingleCharacters(
+            id: widget.id,
+          ),
         );
   }
 }
