@@ -1,13 +1,8 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
-import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/domain/usecases/get_all_episode_usecases.dart';
 import 'package:rick_and_morty/features/episode/domain/usecases/get_character_episode_usecase.dart';

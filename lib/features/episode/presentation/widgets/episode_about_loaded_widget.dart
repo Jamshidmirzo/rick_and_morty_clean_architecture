@@ -3,7 +3,6 @@ import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
 import 'package:rick_and_morty/core/widgets/date_widget.dart';
 import 'package:rick_and_morty/core/widgets/photo_widget.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/presentation/widgets/episode_about_widget.dart';

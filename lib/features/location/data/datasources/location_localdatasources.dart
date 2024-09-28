@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
@@ -27,6 +25,7 @@ class LocationDataSourcesImpl extends LocationLocaldatasources {
   }
 
   @override
+  // ignore: avoid_renaming_method_parameters
   Future<Character> toCharacter(CharacterEntity characterEntity) async {
     final character = characterEntity.toModel();
     return character;

@@ -85,6 +85,7 @@ Future<void> init() async {
       locationDatasources: sl<LocationDatasources>()));
   sl.registerFactory(() => LocationDatasources(dio: Dio()));
   sl.registerFactory(() => LocationDataSourcesImpl());
+
 //episode bloc
   sl.registerFactory(
     () => EpisodeBloc(
@@ -104,7 +105,6 @@ Future<void> init() async {
       episodeRepositriesImpl: sl<EpisodeRepositriesImpl>(),
     ),
   );
-
   sl.registerFactory(() => GetAllEpisodeUsecases(
       episodeRepositriesImpl: sl<EpisodeRepositriesImpl>()));
 
@@ -118,6 +118,5 @@ Future<void> init() async {
       episodeLocaldatasource: sl<EpisodeLocaldatasourceImpl>(),
       episodeDatasource: sl<EpisodeDatasource>()));
   sl.registerFactory(() => EpisodeLocaldatasourceImpl());
-
   sl.registerFactory(() => EpisodeDatasource(dio: Dio()));
 }
