@@ -1114,9 +1114,10 @@ abstract class _getCharactersAndLocations implements LocationEvent {
 /// @nodoc
 mixin _$LocationState {
   Status get status => throw _privateConstructorUsedError;
-  List<LocationModel>? get locations => throw _privateConstructorUsedError;
-  List<Character>? get characters => throw _privateConstructorUsedError;
-  LocationModel? get singleLocation => throw _privateConstructorUsedError;
+  List<LocationModelEntity>? get locations =>
+      throw _privateConstructorUsedError;
+  List<CharacterEntity>? get characters => throw _privateConstructorUsedError;
+  LocationModelEntity? get singleLocation => throw _privateConstructorUsedError;
   String? get failure => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1132,12 +1133,10 @@ abstract class $LocationStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
-      List<LocationModel>? locations,
-      List<Character>? characters,
-      LocationModel? singleLocation,
+      List<LocationModelEntity>? locations,
+      List<CharacterEntity>? characters,
+      LocationModelEntity? singleLocation,
       String? failure});
-
-  $LocationModelCopyWith<$Res>? get singleLocation;
 }
 
 /// @nodoc
@@ -1167,32 +1166,20 @@ class _$LocationStateCopyWithImpl<$Res, $Val extends LocationState>
       locations: freezed == locations
           ? _value.locations
           : locations // ignore: cast_nullable_to_non_nullable
-              as List<LocationModel>?,
+              as List<LocationModelEntity>?,
       characters: freezed == characters
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleLocation: freezed == singleLocation
           ? _value.singleLocation
           : singleLocation // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
+              as LocationModelEntity?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocationModelCopyWith<$Res>? get singleLocation {
-    if (_value.singleLocation == null) {
-      return null;
-    }
-
-    return $LocationModelCopyWith<$Res>(_value.singleLocation!, (value) {
-      return _then(_value.copyWith(singleLocation: value) as $Val);
-    });
   }
 }
 
@@ -1206,13 +1193,10 @@ abstract class _$$LocationStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      List<LocationModel>? locations,
-      List<Character>? characters,
-      LocationModel? singleLocation,
+      List<LocationModelEntity>? locations,
+      List<CharacterEntity>? characters,
+      LocationModelEntity? singleLocation,
       String? failure});
-
-  @override
-  $LocationModelCopyWith<$Res>? get singleLocation;
 }
 
 /// @nodoc
@@ -1240,15 +1224,15 @@ class __$$LocationStateImplCopyWithImpl<$Res>
       locations: freezed == locations
           ? _value._locations
           : locations // ignore: cast_nullable_to_non_nullable
-              as List<LocationModel>?,
+              as List<LocationModelEntity>?,
       characters: freezed == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleLocation: freezed == singleLocation
           ? _value.singleLocation
           : singleLocation // ignore: cast_nullable_to_non_nullable
-              as LocationModel?,
+              as LocationModelEntity?,
       failure: freezed == failure
           ? _value.failure
           : failure // ignore: cast_nullable_to_non_nullable
@@ -1262,8 +1246,8 @@ class __$$LocationStateImplCopyWithImpl<$Res>
 class _$LocationStateImpl implements _LocationState {
   _$LocationStateImpl(
       {this.status = Status.LOADING,
-      final List<LocationModel>? locations,
-      final List<Character>? characters,
+      final List<LocationModelEntity>? locations,
+      final List<CharacterEntity>? characters,
       this.singleLocation,
       this.failure})
       : _locations = locations,
@@ -1272,9 +1256,9 @@ class _$LocationStateImpl implements _LocationState {
   @override
   @JsonKey()
   final Status status;
-  final List<LocationModel>? _locations;
+  final List<LocationModelEntity>? _locations;
   @override
-  List<LocationModel>? get locations {
+  List<LocationModelEntity>? get locations {
     final value = _locations;
     if (value == null) return null;
     if (_locations is EqualUnmodifiableListView) return _locations;
@@ -1282,9 +1266,9 @@ class _$LocationStateImpl implements _LocationState {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Character>? _characters;
+  final List<CharacterEntity>? _characters;
   @override
-  List<Character>? get characters {
+  List<CharacterEntity>? get characters {
     final value = _characters;
     if (value == null) return null;
     if (_characters is EqualUnmodifiableListView) return _characters;
@@ -1293,7 +1277,7 @@ class _$LocationStateImpl implements _LocationState {
   }
 
   @override
-  final LocationModel? singleLocation;
+  final LocationModelEntity? singleLocation;
   @override
   final String? failure;
 
@@ -1336,19 +1320,19 @@ class _$LocationStateImpl implements _LocationState {
 abstract class _LocationState implements LocationState {
   factory _LocationState(
       {final Status status,
-      final List<LocationModel>? locations,
-      final List<Character>? characters,
-      final LocationModel? singleLocation,
+      final List<LocationModelEntity>? locations,
+      final List<CharacterEntity>? characters,
+      final LocationModelEntity? singleLocation,
       final String? failure}) = _$LocationStateImpl;
 
   @override
   Status get status;
   @override
-  List<LocationModel>? get locations;
+  List<LocationModelEntity>? get locations;
   @override
-  List<Character>? get characters;
+  List<CharacterEntity>? get characters;
   @override
-  LocationModel? get singleLocation;
+  LocationModelEntity? get singleLocation;
   @override
   String? get failure;
   @override

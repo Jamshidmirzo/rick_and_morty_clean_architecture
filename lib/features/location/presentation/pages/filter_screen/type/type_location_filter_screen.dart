@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/widgets/loading_widget.dart';
-import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/location_loaded_wdiget.dart';
+import '../../../blocs/bloc/location_bloc.dart';
+import '../../../widgets/location_loaded_wdiget.dart';
 
 class TypeLocationFilterScreen extends StatefulWidget {
   const TypeLocationFilterScreen({super.key});

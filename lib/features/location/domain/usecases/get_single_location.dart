@@ -3,16 +3,16 @@ import 'package:dartz/dartz.dart';
 
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/core/usecase/usecase.dart';
-import 'package:rick_and_morty/features/location/data/model/location_model.dart';
 import 'package:rick_and_morty/features/location/data/repositories/location_repositories.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
 
-class GetSingleLocation extends Usecase<LocationModel, SingleLocationParams> {
+class GetSingleLocation extends Usecase<LocationModelEntity, SingleLocationParams> {
   LocationRepositoriesImpl locationRepositoriesImpl;
   GetSingleLocation({
     required this.locationRepositoriesImpl,
   });
   @override
-  Future<Either<Failure, LocationModel>> call(SingleLocationParams params) {
+  Future<Either<Failure, LocationModelEntity>> call(SingleLocationParams params) {
     return locationRepositoriesImpl.getSingleLocation(params.id);
   }
 }

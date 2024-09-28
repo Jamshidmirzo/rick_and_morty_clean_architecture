@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
 import 'package:rick_and_morty/core/widgets/photo_widget.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/presentation/widgets/character_about_widget.dart';
 
 class CharacterAboutLoadedWidget extends StatelessWidget {
-  final Character character;
+  final CharacterEntity character;
   const CharacterAboutLoadedWidget({super.key, required this.character});
 
   @override

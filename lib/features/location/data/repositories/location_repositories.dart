@@ -3,23 +3,28 @@ import 'package:dartz/dartz.dart';
 
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/location/data/datasources/location_datasources.dart';
+import 'package:rick_and_morty/features/location/data/datasources/location_localdatasources.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
 import 'package:rick_and_morty/features/location/domain/repositories/location_repositories.dart';
 
 class LocationRepositoriesImpl extends LocationRepositories {
-   LocationRemote locationDatasources;
+  LocationRemote locationDatasources;
+  LocationLocaldatasources localdatasources;
   LocationRepositoriesImpl({
     required this.locationDatasources,
+    required this.localdatasources,
   });
   @override
-  Future<Either<Failure, List<LocationModel>>> getAllLocation(
+  Future<Either<Failure, List<LocationModelEntity>>> getAllLocation(
       String? name) async {
     return _getAllLocation(() => locationDatasources.getAllLocation(name));
   }
 
   @override
-  Future<Either<Failure, List<LocationModel>>> getMultiLocation(
+  Future<Either<Failure, List<LocationModelEntity>>> getMultiLocation(
       List<int> idies) {
     return _getMultiLocation(
       () => locationDatasources.getMultiLocation(idies),
@@ -27,14 +32,14 @@ class LocationRepositoriesImpl extends LocationRepositories {
   }
 
   @override
-  Future<Either<Failure, LocationModel>> getSingleLocation(int id) {
+  Future<Either<Failure, LocationModelEntity>> getSingleLocation(int id) {
     return _getSingleLocation(
       () => locationDatasources.getSingleLocation(id),
     );
   }
 
   @override
-  Future<Either<Failure, List<Character>>> getCharacters(
+  Future<Either<Failure, List<CharacterEntity>>> getCharacters(
       List<String> urls) async {
     return await _getCharacters(
       () => locationDatasources.getCharacters(urls),
@@ -42,69 +47,83 @@ class LocationRepositoriesImpl extends LocationRepositories {
   }
 
   @override
-  Future<Either<Failure, List<LocationModel>>> getFilterLocation(
+  Future<Either<Failure, List<LocationModelEntity>>> getFilterLocation(
       String urls) async {
     return await _getFilterLocation(
         () => locationDatasources.getFilterLocation(urls));
   }
-}
 
-
-
-
-
-
-
-
-Future<Either<Failure, List<LocationModel>>> _getFilterLocation(
-    Future<List<LocationModel>> Function() filter) async {
-  try {
-    return Right(await filter());
-  } catch (e) {
-    return Left(
-      ServerFailure(),
-    );
+  Future<Either<Failure, List<LocationModelEntity>>> _getFilterLocation(
+      Future<List<LocationModel>> Function() filter) async {
+    try {
+      final filters = await filter();
+      List<LocationModelEntity> filtersEntity = [];
+      for (var element in filters) {
+        filtersEntity.add(await localdatasources.toEntity(element));
+      }
+      return Right(filtersEntity);
+    } catch (e) {
+      return Left(
+        ServerFailure(),
+      );
+    }
   }
-}
 
-Future<Either<Failure, List<Character>>> _getCharacters(
-    Future<List<Character>> Function() characters) async {
-  try {
-    return Right(await characters());
-  } catch (e) {
-    return Left(ServerFailure());
+  Future<Either<Failure, List<CharacterEntity>>> _getCharacters(
+      Future<List<Character>> Function() characters) async {
+    try {
+      final charactersf = await characters();
+      List<CharacterEntity> characterEntity = [];
+      for (var element in charactersf) {
+        characterEntity.add(await localdatasources.toCharacterEntity(element));
+      }
+      return Right(characterEntity);
+    } catch (e) {
+      return Left(ServerFailure());
+    }
   }
-}
 
-Future<Either<Failure, List<LocationModel>>> _getAllLocation(
-    Future<List<LocationModel>> Function() location) async {
-  try {
-    return Right(await location());
-  } catch (e) {
-    return Left(
-      ServerFailure(),
-    );
+  Future<Either<Failure, List<LocationModelEntity>>> _getAllLocation(
+      Future<List<LocationModel>> Function() location) async {
+    try {
+      final locations = await location();
+      List<LocationModelEntity> locationEntity = [];
+      for (var element in locations) {
+        locationEntity.add(await localdatasources.toEntity(element));
+      }
+      return Right(locationEntity);
+    } catch (e) {
+      return Left(
+        ServerFailure(),
+      );
+    }
   }
-}
 
-Future<Either<Failure, List<LocationModel>>> _getMultiLocation(
-    Future<List<LocationModel>> Function() locations) async {
-  try {
-    return Right(await locations());
-  } catch (e) {
-    return Left(
-      ServerFailure(),
-    );
+  Future<Either<Failure, List<LocationModelEntity>>> _getMultiLocation(
+      Future<List<LocationModel>> Function() locations) async {
+    try {
+      final locationf = await locations();
+      List<LocationModelEntity> locationEntity = [];
+      for (var element in locationf) {
+        locationEntity.add(await localdatasources.toEntity(element));
+      }
+      return Right(locationEntity);
+    } catch (e) {
+      return Left(
+        ServerFailure(),
+      );
+    }
   }
-}
 
-Future<Either<Failure, LocationModel>> _getSingleLocation(
-    Future<LocationModel> Function() location) async {
-  try {
-    return Right(await location());
-  } catch (e) {
-    return Left(
-      ServerFailure(),
-    );
+  Future<Either<Failure, LocationModelEntity>> _getSingleLocation(
+      Future<LocationModel> Function() location) async {
+    try {
+      final locationf = await location();
+      return Right(await localdatasources.toEntity(locationf));
+    } catch (e) {
+      return Left(
+        ServerFailure(),
+      );
+    }
   }
 }

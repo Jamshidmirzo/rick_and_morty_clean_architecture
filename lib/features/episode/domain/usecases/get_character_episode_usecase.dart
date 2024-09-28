@@ -3,17 +3,17 @@ import 'package:dartz/dartz.dart';
 
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/core/usecase/usecase.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/episode/data/repositories/episode_repositries.dart';
 
 class GetCharacterEpisodeUsecase
-    extends Usecase<List<Character>, GetCharacterEpisodeParams> {
+    extends Usecase<List<CharacterEntity>, GetCharacterEpisodeParams> {
   EpisodeRepositriesImpl episodeRepositriesImpl;
   GetCharacterEpisodeUsecase({
     required this.episodeRepositriesImpl,
   });
   @override
-  Future<Either<Failure, List<Character>>> call(
+  Future<Either<Failure, List<CharacterEntity>>> call(
       GetCharacterEpisodeParams params) {
     return episodeRepositriesImpl.getResidentsEpisode(params.urls);
   }

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
 
-import 'package:rick_and_morty/features/location/data/model/location_model.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/location_widget.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
+import 'location_widget.dart';
 
 class LocationLoadedWdiget extends StatelessWidget {
-  final List<LocationModel> locations;
+  final List<LocationModelEntity> locations;
   const LocationLoadedWdiget({
     super.key,
     required this.locations,

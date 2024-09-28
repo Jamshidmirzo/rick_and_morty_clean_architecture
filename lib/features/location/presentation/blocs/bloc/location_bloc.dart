@@ -4,8 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
-import 'package:rick_and_morty/features/location/data/model/location_model.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
 import 'package:rick_and_morty/features/location/domain/usecases/get_all_location_usecases.dart';
 import 'package:rick_and_morty/features/location/domain/usecases/get_characters_usecases.dart';
 import 'package:rick_and_morty/features/location/domain/usecases/get_filter_locations_usecases.dart';

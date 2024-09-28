@@ -682,8 +682,8 @@ abstract class _getFilterCharacters implements CharacterEvent {
 /// @nodoc
 mixin _$CharacterState {
   Status get status => throw _privateConstructorUsedError;
-  List<Character>? get character => throw _privateConstructorUsedError;
-  Character? get singleCharacter => throw _privateConstructorUsedError;
+  List<CharacterEntity>? get character => throw _privateConstructorUsedError;
+  CharacterEntity? get singleCharacter => throw _privateConstructorUsedError;
   String? get message => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -699,11 +699,9 @@ abstract class $CharacterStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Status status,
-      List<Character>? character,
-      Character? singleCharacter,
+      List<CharacterEntity>? character,
+      CharacterEntity? singleCharacter,
       String? message});
-
-  $CharacterCopyWith<$Res>? get singleCharacter;
 }
 
 /// @nodoc
@@ -732,28 +730,16 @@ class _$CharacterStateCopyWithImpl<$Res, $Val extends CharacterState>
       character: freezed == character
           ? _value.character
           : character // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleCharacter: freezed == singleCharacter
           ? _value.singleCharacter
           : singleCharacter // ignore: cast_nullable_to_non_nullable
-              as Character?,
+              as CharacterEntity?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CharacterCopyWith<$Res>? get singleCharacter {
-    if (_value.singleCharacter == null) {
-      return null;
-    }
-
-    return $CharacterCopyWith<$Res>(_value.singleCharacter!, (value) {
-      return _then(_value.copyWith(singleCharacter: value) as $Val);
-    });
   }
 }
 
@@ -767,12 +753,9 @@ abstract class _$$CharacterStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Status status,
-      List<Character>? character,
-      Character? singleCharacter,
+      List<CharacterEntity>? character,
+      CharacterEntity? singleCharacter,
       String? message});
-
-  @override
-  $CharacterCopyWith<$Res>? get singleCharacter;
 }
 
 /// @nodoc
@@ -799,11 +782,11 @@ class __$$CharacterStateImplCopyWithImpl<$Res>
       character: freezed == character
           ? _value._character
           : character // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleCharacter: freezed == singleCharacter
           ? _value.singleCharacter
           : singleCharacter // ignore: cast_nullable_to_non_nullable
-              as Character?,
+              as CharacterEntity?,
       message: freezed == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -817,7 +800,7 @@ class __$$CharacterStateImplCopyWithImpl<$Res>
 class _$CharacterStateImpl implements _CharacterState {
   _$CharacterStateImpl(
       {this.status = Status.LOADING,
-      final List<Character>? character,
+      final List<CharacterEntity>? character,
       this.singleCharacter,
       this.message})
       : _character = character;
@@ -825,9 +808,9 @@ class _$CharacterStateImpl implements _CharacterState {
   @override
   @JsonKey()
   final Status status;
-  final List<Character>? _character;
+  final List<CharacterEntity>? _character;
   @override
-  List<Character>? get character {
+  List<CharacterEntity>? get character {
     final value = _character;
     if (value == null) return null;
     if (_character is EqualUnmodifiableListView) return _character;
@@ -836,7 +819,7 @@ class _$CharacterStateImpl implements _CharacterState {
   }
 
   @override
-  final Character? singleCharacter;
+  final CharacterEntity? singleCharacter;
   @override
   final String? message;
 
@@ -877,16 +860,16 @@ class _$CharacterStateImpl implements _CharacterState {
 abstract class _CharacterState implements CharacterState {
   factory _CharacterState(
       {final Status status,
-      final List<Character>? character,
-      final Character? singleCharacter,
+      final List<CharacterEntity>? character,
+      final CharacterEntity? singleCharacter,
       final String? message}) = _$CharacterStateImpl;
 
   @override
   Status get status;
   @override
-  List<Character>? get character;
+  List<CharacterEntity>? get character;
   @override
-  Character? get singleCharacter;
+  CharacterEntity? get singleCharacter;
   @override
   String? get message;
   @override

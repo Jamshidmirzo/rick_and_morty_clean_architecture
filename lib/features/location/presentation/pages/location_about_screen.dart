@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/widgets/error_widget.dart';
 import 'package:rick_and_morty/core/widgets/loading_widget.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
-import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/location_about_loaded_widget.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
+import '../blocs/bloc/location_bloc.dart';
+import '../widgets/location_about_loaded_widget.dart';
 
 class LocationAboutScreen extends StatefulWidget {
   final List<String> residents;
@@ -32,7 +32,7 @@ class _LocationAboutScreenState extends State<LocationAboutScreen> {
           }
           if (state.status == Status.SUCCESS) {
             final location = state.singleLocation;
-            List<Character>? character = state.characters;
+            List<CharacterEntity>? character = state.characters;
             if (location == null && character == null) {
               return const Center(
                 child: Text("Errro when getting"),

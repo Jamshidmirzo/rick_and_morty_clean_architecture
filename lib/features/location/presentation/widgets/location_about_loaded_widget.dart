@@ -4,15 +4,14 @@ import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
 import 'package:rick_and_morty/core/widgets/date_widget.dart';
 import 'package:rick_and_morty/core/widgets/photo_widget.dart';
-
-import 'package:rick_and_morty/features/character/data/model/character.dart';
-import 'package:rick_and_morty/features/location/data/model/location_model.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/location_about_widget.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/resident_widget.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
+import 'location_about_widget.dart';
+import 'resident_widget.dart';
 
 class LocationAboutLoadedWidget extends StatelessWidget {
-  final LocationModel location;
-  final List<Character> character;
+  final LocationModelEntity location;
+  final List<CharacterEntity> character;
   const LocationAboutLoadedWidget({
     super.key,
     required this.location,

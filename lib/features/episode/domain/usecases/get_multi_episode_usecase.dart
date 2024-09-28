@@ -2,15 +2,15 @@
 import 'package:dartz/dartz.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/core/usecase/usecase.dart';
-import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/data/repositories/episode_repositries.dart';
+import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 
 class GetMultiEpisodeUsecase
-    extends Usecase<List<Episode>, MultiEpisodeParams> {
+    extends Usecase<List<EpisodeEntity>, MultiEpisodeParams> {
   EpisodeRepositriesImpl episodeRepositriesImpl;
   GetMultiEpisodeUsecase({required this.episodeRepositriesImpl});
   @override
-  Future<Either<Failure, List<Episode>>> call(MultiEpisodeParams params) {
+  Future<Either<Failure, List<EpisodeEntity>>> call(MultiEpisodeParams params) {
     return episodeRepositriesImpl.getMultiEpisode(params.idies);
   }
 }

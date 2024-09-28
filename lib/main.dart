@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/widgets/bottom_nav_bar.dart';
 import 'package:rick_and_morty/features/episode/presentation/blocs/bloc/episode_bloc.dart';
 import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
+
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/theme_cubit.dart';
 import 'package:rick_and_morty/service_locator.dart';
 import 'service_locator.dart' as di;

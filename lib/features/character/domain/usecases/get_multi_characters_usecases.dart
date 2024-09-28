@@ -3,18 +3,18 @@ import 'package:dartz/dartz.dart';
 
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/core/usecase/usecase.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/domain/repository/character_repository.dart';
 
 class GetMultiCharactersUsecases
-    extends Usecase<List<Character>, MultiCharacter> {
+    extends Usecase<List<CharacterEntity>, MultiCharacter> {
   CharacterRepository characterRepository;
   GetMultiCharactersUsecases({
     required this.characterRepository,
   });
 
   @override
-  Future<Either<Failure, List<Character>>> call(MultiCharacter params) {
+  Future<Either<Failure, List<CharacterEntity>>> call(MultiCharacter params) {
     return characterRepository.getMultiCharacters(params.params);
   }
 }

@@ -4,13 +4,15 @@ import 'package:rick_and_morty/core/extensions/extension.dart';
 import 'package:rick_and_morty/core/widgets/date_widget.dart';
 import 'package:rick_and_morty/core/widgets/photo_widget.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
-import 'package:rick_and_morty/features/episode/data/model/episode.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
+import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/presentation/widgets/episode_about_widget.dart';
 import 'package:rick_and_morty/features/location/presentation/widgets/resident_widget.dart';
 
+
 class EpisodeAboutLoadedWidget extends StatelessWidget {
-  final Episode episode;
-  final List<Character> characters;
+  final EpisodeEntity episode;
+  final List<CharacterEntity> characters;
   const EpisodeAboutLoadedWidget(
       {super.key, required this.characters, required this.episode});
 

@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
 import 'package:rick_and_morty/features/episode/data/model/episode.dart';
+import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/presentation/widgets/episode_widget.dart';
 
 class EpisodeLoadedWidget extends StatelessWidget {
-  final List<Episode> episodes;
+  final List<EpisodeEntity> episodes;
   const EpisodeLoadedWidget({super.key, required this.episodes});
 
   @override

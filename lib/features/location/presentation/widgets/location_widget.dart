@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
-import 'package:rick_and_morty/features/location/data/model/location_model.dart';
-import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
-import 'package:rick_and_morty/features/location/presentation/pages/location_about_screen.dart';
+import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
+import '../blocs/bloc/location_bloc.dart';
+import '../pages/location_about_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class LocationWidget extends StatelessWidget {
-  final LocationModel location;
+  final LocationModelEntity location;
   const LocationWidget({super.key, required this.location});
 
   @override

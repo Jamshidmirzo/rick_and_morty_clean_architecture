@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:rick_and_morty/features/location/presentation/pages/filter_screen/dimension/dimension_filter_location_screen.dart';
-import 'package:rick_and_morty/features/location/presentation/pages/filter_screen/type/type_location_filter_screen.dart';
+import 'dimension/dimension_filter_location_screen.dart';
+import 'type/type_location_filter_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class LocationFilterScreen extends StatefulWidget {

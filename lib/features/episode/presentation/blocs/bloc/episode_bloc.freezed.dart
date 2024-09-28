@@ -1131,9 +1131,9 @@ abstract class _getResidentsAndLocationEpisodes implements EpisodeEvent {
 mixin _$EpisodeState {
   Status get status => throw _privateConstructorUsedError;
   String? get failure => throw _privateConstructorUsedError;
-  List<Episode>? get episodes => throw _privateConstructorUsedError;
-  List<Character>? get characters => throw _privateConstructorUsedError;
-  Episode? get singleEpisodes => throw _privateConstructorUsedError;
+  List<EpisodeEntity>? get episodes => throw _privateConstructorUsedError;
+  List<CharacterEntity>? get characters => throw _privateConstructorUsedError;
+  EpisodeEntity? get singleEpisodes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $EpisodeStateCopyWith<EpisodeState> get copyWith =>
@@ -1149,11 +1149,9 @@ abstract class $EpisodeStateCopyWith<$Res> {
   $Res call(
       {Status status,
       String? failure,
-      List<Episode>? episodes,
-      List<Character>? characters,
-      Episode? singleEpisodes});
-
-  $EpisodeCopyWith<$Res>? get singleEpisodes;
+      List<EpisodeEntity>? episodes,
+      List<CharacterEntity>? characters,
+      EpisodeEntity? singleEpisodes});
 }
 
 /// @nodoc
@@ -1187,28 +1185,16 @@ class _$EpisodeStateCopyWithImpl<$Res, $Val extends EpisodeState>
       episodes: freezed == episodes
           ? _value.episodes
           : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episode>?,
+              as List<EpisodeEntity>?,
       characters: freezed == characters
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleEpisodes: freezed == singleEpisodes
           ? _value.singleEpisodes
           : singleEpisodes // ignore: cast_nullable_to_non_nullable
-              as Episode?,
+              as EpisodeEntity?,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $EpisodeCopyWith<$Res>? get singleEpisodes {
-    if (_value.singleEpisodes == null) {
-      return null;
-    }
-
-    return $EpisodeCopyWith<$Res>(_value.singleEpisodes!, (value) {
-      return _then(_value.copyWith(singleEpisodes: value) as $Val);
-    });
   }
 }
 
@@ -1223,12 +1209,9 @@ abstract class _$$EpisodeStateImplCopyWith<$Res>
   $Res call(
       {Status status,
       String? failure,
-      List<Episode>? episodes,
-      List<Character>? characters,
-      Episode? singleEpisodes});
-
-  @override
-  $EpisodeCopyWith<$Res>? get singleEpisodes;
+      List<EpisodeEntity>? episodes,
+      List<CharacterEntity>? characters,
+      EpisodeEntity? singleEpisodes});
 }
 
 /// @nodoc
@@ -1260,15 +1243,15 @@ class __$$EpisodeStateImplCopyWithImpl<$Res>
       episodes: freezed == episodes
           ? _value._episodes
           : episodes // ignore: cast_nullable_to_non_nullable
-              as List<Episode>?,
+              as List<EpisodeEntity>?,
       characters: freezed == characters
           ? _value._characters
           : characters // ignore: cast_nullable_to_non_nullable
-              as List<Character>?,
+              as List<CharacterEntity>?,
       singleEpisodes: freezed == singleEpisodes
           ? _value.singleEpisodes
           : singleEpisodes // ignore: cast_nullable_to_non_nullable
-              as Episode?,
+              as EpisodeEntity?,
     ));
   }
 }
@@ -1279,8 +1262,8 @@ class _$EpisodeStateImpl implements _EpisodeState {
   _$EpisodeStateImpl(
       {this.status = Status.LOADING,
       this.failure,
-      final List<Episode>? episodes,
-      final List<Character>? characters,
+      final List<EpisodeEntity>? episodes,
+      final List<CharacterEntity>? characters,
       this.singleEpisodes})
       : _episodes = episodes,
         _characters = characters;
@@ -1290,9 +1273,9 @@ class _$EpisodeStateImpl implements _EpisodeState {
   final Status status;
   @override
   final String? failure;
-  final List<Episode>? _episodes;
+  final List<EpisodeEntity>? _episodes;
   @override
-  List<Episode>? get episodes {
+  List<EpisodeEntity>? get episodes {
     final value = _episodes;
     if (value == null) return null;
     if (_episodes is EqualUnmodifiableListView) return _episodes;
@@ -1300,9 +1283,9 @@ class _$EpisodeStateImpl implements _EpisodeState {
     return EqualUnmodifiableListView(value);
   }
 
-  final List<Character>? _characters;
+  final List<CharacterEntity>? _characters;
   @override
-  List<Character>? get characters {
+  List<CharacterEntity>? get characters {
     final value = _characters;
     if (value == null) return null;
     if (_characters is EqualUnmodifiableListView) return _characters;
@@ -1311,7 +1294,7 @@ class _$EpisodeStateImpl implements _EpisodeState {
   }
 
   @override
-  final Episode? singleEpisodes;
+  final EpisodeEntity? singleEpisodes;
 
   @override
   String toString() {
@@ -1352,20 +1335,20 @@ abstract class _EpisodeState implements EpisodeState {
   factory _EpisodeState(
       {final Status status,
       final String? failure,
-      final List<Episode>? episodes,
-      final List<Character>? characters,
-      final Episode? singleEpisodes}) = _$EpisodeStateImpl;
+      final List<EpisodeEntity>? episodes,
+      final List<CharacterEntity>? characters,
+      final EpisodeEntity? singleEpisodes}) = _$EpisodeStateImpl;
 
   @override
   Status get status;
   @override
   String? get failure;
   @override
-  List<Episode>? get episodes;
+  List<EpisodeEntity>? get episodes;
   @override
-  List<Character>? get characters;
+  List<CharacterEntity>? get characters;
   @override
-  Episode? get singleEpisodes;
+  EpisodeEntity? get singleEpisodes;
   @override
   @JsonKey(ignore: true)
   _$$EpisodeStateImplCopyWith<_$EpisodeStateImpl> get copyWith =>

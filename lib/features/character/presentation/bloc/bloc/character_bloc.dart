@@ -4,7 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/domain/usecases/get_all_characters_usecases.dart';
 import 'package:rick_and_morty/features/character/domain/usecases/get_filter_character_usecase.dart';
 import 'package:rick_and_morty/features/character/domain/usecases/get_multi_characters_usecases.dart';
@@ -95,9 +95,10 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
         );
       },
       (data) {
-        emit(
-          state.copyWith(status: Status.SUCCESS, singleCharacter: data),
-        );
+        emit(state.copyWith(
+          status: Status.SUCCESS,
+          singleCharacter: data,
+        ));
       },
     );
   }
@@ -125,7 +126,6 @@ class CharacterBloc extends Bloc<CharacterEvent, CharacterState> {
       },
     );
   }
-
 
   String _failureMessage(Failure failure) {
     switch (failure) {

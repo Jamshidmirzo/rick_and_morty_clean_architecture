@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
-import 'package:rick_and_morty/features/episode/data/model/episode.dart';
+import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/presentation/pages/episode_about_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class EpisodeWidget extends StatelessWidget {
-  final Episode episode;
+  final EpisodeEntity episode;
   const EpisodeWidget({super.key, required this.episode});
 
   @override

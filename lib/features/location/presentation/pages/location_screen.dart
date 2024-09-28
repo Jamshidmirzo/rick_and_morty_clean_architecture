@@ -4,9 +4,9 @@ import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/widgets/error_widget.dart';
 import 'package:rick_and_morty/core/widgets/loading_widget.dart';
 import 'package:rick_and_morty/core/widgets/search_widget.dart';
-import 'package:rick_and_morty/features/location/presentation/blocs/bloc/location_bloc.dart';
-import 'package:rick_and_morty/features/location/presentation/pages/filter_screen/location_filter_screen.dart';
-import 'package:rick_and_morty/features/location/presentation/widgets/location_loaded_wdiget.dart';
+import '../blocs/bloc/location_bloc.dart';
+import 'filter_screen/location_filter_screen.dart';
+import '../widgets/location_loaded_wdiget.dart';
 
 class LocationScreen extends StatefulWidget {
   const LocationScreen({super.key});

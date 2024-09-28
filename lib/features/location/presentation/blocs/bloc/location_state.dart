@@ -4,9 +4,9 @@ part of 'location_bloc.dart';
 class LocationState with _$LocationState {
   factory LocationState({
     @Default(Status.LOADING) Status status,
-    List<LocationModel>? locations,
-    List<Character>? characters,
-    LocationModel? singleLocation,
+    List<LocationModelEntity>? locations,
+    List<CharacterEntity>? characters,
+    LocationModelEntity? singleLocation,
     String? failure,
   }) = _LocationState;
 }

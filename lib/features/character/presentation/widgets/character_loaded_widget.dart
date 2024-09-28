@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/presentation/widgets/character_info_widget.dart';
 
 class CharacterLoadedWidget extends StatelessWidget {
-  final List<Character> character;
+  final List<CharacterEntity> character;
   const CharacterLoadedWidget({super.key, required this.character});
 
   @override

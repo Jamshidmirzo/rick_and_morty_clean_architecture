@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
-import 'package:rick_and_morty/features/character/data/model/character.dart';
+import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/presentation/bloc/bloc/character_bloc.dart';
 import 'package:rick_and_morty/features/character/presentation/pages/character_about_screen.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ResidentWidget extends StatelessWidget {
-  final Character character;
+  final CharacterEntity character;
   const ResidentWidget({super.key, required this.character});
 
   @override
