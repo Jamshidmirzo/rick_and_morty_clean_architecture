@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/theme_cubit.dart';
 import 'package:rick_and_morty/features/settings/presentation/widgets/bottom_for_lang.dart';
-import 'package:rick_and_morty/local_notifications_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -68,16 +67,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     trailing: const Icon(Icons.arrow_forward_ios_rounded),
                   ),
                 ),
-                FilledButton(
-                    onPressed: () {
-                      LocalNotificationsService.showNotifications();
-                    },
-                    child: const Text("Oddiy xabarnoma")),
-                FilledButton(
-                    onPressed: () {
-                      LocalNotificationsService.showScheduleNotifications();
-                    },
-                    child: const Text("Schedule xabarnoma"))
               ],
             ),
           );

@@ -8,9 +8,9 @@ import 'package:rick_and_morty/core/widgets/bottom_nav_bar.dart';
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/localization%20cubit/cubit/local_cubit.dart';
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/localization%20cubit/cubit/local_state.dart';
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/theme_cubit.dart';
-import 'package:rick_and_morty/firebase_push_notification.dart';
+import 'package:rick_and_morty/core/services/firebase_push_notification.dart';
 import 'package:rick_and_morty/gen/localization_delegate.dart';
-import 'package:rick_and_morty/local_notifications_service.dart';
+import 'package:rick_and_morty/core/services/local_notifications_service.dart';
 import 'service_locator.dart' as di;
 
 @pragma('vm:entry-point')

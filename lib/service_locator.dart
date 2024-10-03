@@ -113,7 +113,10 @@ Future<void> init() async {
       episodeRepositriesImpl: sl<EpisodeRepositriesImpl>()));
 
   sl.registerFactory(
-      () => EpisodeRepositriesImpl(episodeDatasource: sl<EpisodeDatasource>()));
+    () => EpisodeRepositriesImpl(
+      episodeDatasource: sl<EpisodeDatasource>(),
+    ),
+  );
 
   sl.registerFactory(() => EpisodeDatasource(dio: Dio()));
 }
