@@ -16,7 +16,6 @@ class LocationDataSourcesImpl extends LocationLocaldatasources {
     final entity = model.toEntity();
     return entity;
   }
-
   @override
   Future<LocationModel> toLocation(
       LocationModelEntity locationModelEntity) async {
@@ -32,7 +31,7 @@ class LocationDataSourcesImpl extends LocationLocaldatasources {
   }
 
   @override
-  Future<CharacterEntity> toCharacterEntity(Character character) async{
+  Future<CharacterEntity> toCharacterEntity(Character character) async {
     final characterChange = character.toEntity();
     return characterChange;
   }

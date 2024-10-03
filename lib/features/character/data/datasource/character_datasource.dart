@@ -26,23 +26,19 @@ class CharacterDatasource extends CharacterRemote {
     } else {
       url = '$baseUrl/character';
     }
+
     final responce = await dio.get(url);
 
     if (responce.statusCode == 200) {
       List<Character> characters = (responce.data['results'] as List)
           .map((data) => Character.fromJson(data))
           .toList();
-      for (var element in characters) {
-        statusConstant.add(element.status);
-        speciesConstant.add(element.species);
-        genderConstant.add(element.gender);
-      }
-
       return characters;
     } else {
       throw ServerException();
     }
   }
+
   @override
   Future<Character> getSingleCharacter(int id) async {
     final url = '$baseUrl/character/$id';
@@ -53,6 +49,7 @@ class CharacterDatasource extends CharacterRemote {
       throw ServerException();
     }
   }
+
   @override
   Future<List<Character>> getMultiCharacter(List idies) async {
     final url = '$baseUrl/character/$idies';
@@ -66,6 +63,7 @@ class CharacterDatasource extends CharacterRemote {
       throw ServerException();
     }
   }
+
   @override
   Future<List<Character>> getFilterCharacter(String newUrl) async {
     final url = '$baseUrl/character/?$newUrl';

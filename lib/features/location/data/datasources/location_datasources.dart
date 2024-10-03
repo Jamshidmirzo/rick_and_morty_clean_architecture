@@ -18,9 +18,11 @@ class LocationDatasources extends LocationRemote {
   LocationDatasources({
     required this.dio,
   }) {
-    dio.interceptors.add(InterCeptor());
+    dio.interceptors.add(
+      InterCeptor(),
+    );
   }
-  
+
   @override
   Future<List<LocationModel>> getAllLocation(String? name) async {
     String url = '';
@@ -37,10 +39,6 @@ class LocationDatasources extends LocationRemote {
           )
           .toList();
 
-      for (var element in locations) {
-        locationTypeConstant.add(element.type);
-        locationDimensionConstant.add(element.dimension);
-      }
       return locations;
     } else {
       throw ServerException();
@@ -98,7 +96,9 @@ class LocationDatasources extends LocationRemote {
       final responce = await dio.get(element);
       if (responce.statusCode == 200) {
         characters.add(
-          Character.fromJson(responce.data),
+          Character.fromJson(
+            responce.data,
+          ),
         );
       } else {
         throw ServerException();

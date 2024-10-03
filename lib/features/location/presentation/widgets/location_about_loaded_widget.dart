@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
@@ -48,21 +49,23 @@ class LocationAboutLoadedWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     LocationAboutWidget(
-                        firstText: location.name, secondText: "Name"),
+                        firstText: location.name,
+                        secondText: context.tr('name')),
                     LocationAboutWidget(
-                        firstText: location.type, secondText: "Type"),
+                        firstText: location.type,
+                        secondText: context.tr('type')),
                     LocationAboutWidget(
                         firstText: GetDate.getDate(location.created),
-                        secondText: "Date"),
+                        secondText: context.tr('date')),
                   ],
                 ),
               ),
               20.sH(),
-              const Text(
-                'Residents',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              Text(
+                context.tr('restd'),
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
               ),
-             20.sH(),
+              20.sH(),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.10,
                 child: ListView.separated(

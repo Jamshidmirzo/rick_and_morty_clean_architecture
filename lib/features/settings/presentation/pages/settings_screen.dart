@@ -1,6 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rick_and_morty/features/settings/presentation/blocs/cubit/theme_cubit.dart';
+import 'package:rick_and_morty/features/settings/presentation/widgets/bottom_for_lang.dart';
+import 'package:rick_and_morty/local_notifications_service.dart';
+import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,7 +18,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Settings"),
+        title: Text(
+          context.tr('sttngs'),
+        ),
       ),
       body: BlocBuilder<ThemeCubit, ThemeData>(
         builder: (context, isDarkTheme) {
@@ -43,11 +49,49 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                   ),
                 ),
+                ZoomTapAnimation(
+                  onTap: () {
+                    _showModalBottomSheet(context);
+                  },
+                  child: ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(
+                      Icons.language,
+                      size: 40,
+                    ),
+                    title: Text(
+                      context.tr('lng'),
+                      style: const TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                    trailing: const Icon(Icons.arrow_forward_ios_rounded),
+                  ),
+                ),
+                FilledButton(
+                    onPressed: () {
+                      LocalNotificationsService.showNotifications();
+                    },
+                    child: const Text("Oddiy xabarnoma")),
+                FilledButton(
+                    onPressed: () {
+                      LocalNotificationsService.showScheduleNotifications();
+                    },
+                    child: const Text("Schedule xabarnoma"))
               ],
             ),
           );
         },
       ),
+    );
+  }
+
+  void _showModalBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return const Bottomforlang();
+      },
     );
   }
 }

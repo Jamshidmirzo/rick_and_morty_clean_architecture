@@ -33,10 +33,6 @@ class EpisodeDatasource extends EpisodeRemote {
       List<Episode> episodes = (responce.data['results'] as List)
           .map((item) => Episode.fromJson(item))
           .toList();
-
-      for (var element in episodes) {
-        episodeConstant.add(element.episode);
-      }
       return episodes;
     } else {
       throw ServerException();

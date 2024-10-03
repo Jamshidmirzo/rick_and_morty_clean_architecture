@@ -1,19 +1,16 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-
+import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/features/character/data/datasource/character_datasource.dart';
-import 'package:rick_and_morty/features/character/data/datasource/local_datasources.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/character/domain/repository/character_repository.dart';
 
 class CharacterRepositoryImpl extends CharacterRepository {
   CharacterRemote characterDatasource;
-  LocalDatasources localDatasources;
+
   CharacterRepositoryImpl({
     required this.characterDatasource,
-    required this.localDatasources,
   });
   @override
   Future<Either<Failure, List<CharacterEntity>>> getCharacters(
@@ -51,8 +48,10 @@ class CharacterRepositoryImpl extends CharacterRepository {
       final getcharacters = await getCharacter();
       List<CharacterEntity> characterentities = [];
       for (var character in getcharacters) {
-        characterentities
-            .add(await localDatasources.getCharactersEntity(character));
+        characterentities.add(character.toEntity());
+        statusConstant.add(character.status);
+        speciesConstant.add(character.species);
+        genderConstant.add(character.gender);
       }
       return Right(characterentities);
     } catch (e) {
@@ -66,11 +65,8 @@ class CharacterRepositoryImpl extends CharacterRepository {
       Future<List<Character>> Function() getMultiCharacter) async {
     try {
       final characters = await getMultiCharacter();
-      List<CharacterEntity> characterentities = [];
-      for (var element in characters) {
-        characterentities
-            .add(await localDatasources.getCharactersEntity(element));
-      }
+      List<CharacterEntity> characterentities =
+          characters.map((element) => element.toEntity()).toList();
       return Right(characterentities);
     } catch (e) {
       return Left(ServerFailure());
@@ -81,11 +77,8 @@ class CharacterRepositoryImpl extends CharacterRepository {
       Future<List<Character>> Function() getFilterCharacter) async {
     try {
       final characters = await getFilterCharacter();
-      List<CharacterEntity> characterEntities = [];
-      for (var element in characters) {
-        characterEntities
-            .add(await localDatasources.getCharactersEntity(element));
-      }
+      List<CharacterEntity> characterEntities =
+          characters.map((element) => element.toEntity()).toList();
 
       return Right(characterEntities);
     } catch (e) {
@@ -97,7 +90,7 @@ class CharacterRepositoryImpl extends CharacterRepository {
       Future<Character> Function() getSingleCharacter) async {
     try {
       final characters = await getSingleCharacter();
-      return Right(await localDatasources.getCharactersEntity(characters));
+      return Right(characters.toEntity());
     } catch (e) {
       return Left(ServerFailure());
     }

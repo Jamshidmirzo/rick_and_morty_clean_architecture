@@ -1,21 +1,18 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
-
+import 'package:rick_and_morty/core/constants/constants.dart';
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/location/data/datasources/location_datasources.dart';
-import 'package:rick_and_morty/features/location/data/datasources/location_localdatasources.dart';
 import 'package:rick_and_morty/features/location/data/model/location_model.dart';
 import 'package:rick_and_morty/features/location/domain/entities/location_model_entity.dart';
 import 'package:rick_and_morty/features/location/domain/repositories/location_repositories.dart';
 
 class LocationRepositoriesImpl extends LocationRepositories {
   LocationRemote locationDatasources;
-  LocationLocaldatasources localdatasources;
   LocationRepositoriesImpl({
     required this.locationDatasources,
-    required this.localdatasources,
   });
   @override
   Future<Either<Failure, List<LocationModelEntity>>> getAllLocation(
@@ -57,10 +54,9 @@ class LocationRepositoriesImpl extends LocationRepositories {
       Future<List<LocationModel>> Function() filter) async {
     try {
       final filters = await filter();
-      List<LocationModelEntity> filtersEntity = [];
-      for (var element in filters) {
-        filtersEntity.add(await localdatasources.toEntity(element));
-      }
+      List<LocationModelEntity> filtersEntity =
+          filters.map((element) => element.toEntity()).toList();
+
       return Right(filtersEntity);
     } catch (e) {
       return Left(
@@ -73,10 +69,8 @@ class LocationRepositoriesImpl extends LocationRepositories {
       Future<List<Character>> Function() characters) async {
     try {
       final charactersf = await characters();
-      List<CharacterEntity> characterEntity = [];
-      for (var element in charactersf) {
-        characterEntity.add(await localdatasources.toCharacterEntity(element));
-      }
+      List<CharacterEntity> characterEntity =
+          charactersf.map((element) => element.toEntity()).toList();
       return Right(characterEntity);
     } catch (e) {
       return Left(ServerFailure());
@@ -89,7 +83,9 @@ class LocationRepositoriesImpl extends LocationRepositories {
       final locations = await location();
       List<LocationModelEntity> locationEntity = [];
       for (var element in locations) {
-        locationEntity.add(await localdatasources.toEntity(element));
+        locationEntity.add(element.toEntity());
+        locationTypeConstant.add(element.type);
+        locationDimensionConstant.add(element.dimension);
       }
       return Right(locationEntity);
     } catch (e) {
@@ -103,10 +99,8 @@ class LocationRepositoriesImpl extends LocationRepositories {
       Future<List<LocationModel>> Function() locations) async {
     try {
       final locationf = await locations();
-      List<LocationModelEntity> locationEntity = [];
-      for (var element in locationf) {
-        locationEntity.add(await localdatasources.toEntity(element));
-      }
+      List<LocationModelEntity> locationEntity =
+          locationf.map((element) => element.toEntity()).toList();
       return Right(locationEntity);
     } catch (e) {
       return Left(
@@ -119,7 +113,7 @@ class LocationRepositoriesImpl extends LocationRepositories {
       Future<LocationModel> Function() location) async {
     try {
       final locationf = await location();
-      return Right(await localdatasources.toEntity(locationf));
+      return Right(locationf.toEntity());
     } catch (e) {
       return Left(
         ServerFailure(),

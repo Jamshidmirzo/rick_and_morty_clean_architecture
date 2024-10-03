@@ -1,21 +1,20 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dartz/dartz.dart';
+import 'package:rick_and_morty/core/constants/constants.dart';
 
 import 'package:rick_and_morty/core/error/failure.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 import 'package:rick_and_morty/features/character/domain/entities/character_entity.dart';
 import 'package:rick_and_morty/features/episode/data/datasources/episode_datasource.dart';
-import 'package:rick_and_morty/features/episode/data/datasources/episode_localdatasource.dart';
 import 'package:rick_and_morty/features/episode/data/model/episode.dart';
 import 'package:rick_and_morty/features/episode/domain/entities/episode_entity.dart';
 import 'package:rick_and_morty/features/episode/domain/repositories/episode_repositories.dart';
 
 class EpisodeRepositriesImpl extends EpisodeRepositories {
   EpisodeRemote episodeDatasource;
-  EpisodeLocaldatasource episodeLocaldatasource;
+
   EpisodeRepositriesImpl({
     required this.episodeDatasource,
-    required this.episodeLocaldatasource,
   });
   @override
   Future<Either<Failure, List<EpisodeEntity>>> getAllEpisode(
@@ -51,8 +50,8 @@ class EpisodeRepositriesImpl extends EpisodeRepositories {
       List<EpisodeEntity> episodesentities = [];
       final getAllEpisode = await getAll();
       for (var element in getAllEpisode) {
-        episodesentities
-            .add(await episodeLocaldatasource.toEpisodeEntity(element));
+        episodesentities.add(element.toEpisode());
+        episodeConstant.add(element.episode);
       }
       return Right(episodesentities);
     } catch (e) {
@@ -63,12 +62,9 @@ class EpisodeRepositriesImpl extends EpisodeRepositories {
   Future<Either<Failure, List<EpisodeEntity>>> _getFilter(
       Future<List<Episode>> Function() getFilter) async {
     try {
-      List<EpisodeEntity> charactiriesEntity = [];
       final filter = await getFilter();
-      for (var element in filter) {
-        charactiriesEntity
-            .add((await episodeLocaldatasource.toEpisodeEntity(element)));
-      }
+      List<EpisodeEntity> charactiriesEntity =
+          filter.map((element) => element.toEpisode()).toList();
       return Right(charactiriesEntity);
     } catch (e) {
       return Left(ServerFailure());
@@ -79,11 +75,8 @@ class EpisodeRepositriesImpl extends EpisodeRepositories {
       Future<List<Episode>> Function() getMulti) async {
     try {
       final multi = await getMulti();
-      List<EpisodeEntity> characterEntity = [];
-      for (var element in multi) {
-        characterEntity
-            .add(await episodeLocaldatasource.toEpisodeEntity(element));
-      }
+      List<EpisodeEntity> characterEntity =
+          multi.map((element) => element.toEpisode()).toList();
       return Right(characterEntity);
     } catch (e) {
       return Left(ServerFailure());
@@ -95,7 +88,7 @@ class EpisodeRepositriesImpl extends EpisodeRepositories {
     try {
       final single = await getSingle();
 
-      return Right(await episodeLocaldatasource.toEpisodeEntity(single));
+      return Right(single.toEpisode());
     } catch (e) {
       return Left(ServerFailure());
     }
@@ -105,11 +98,7 @@ class EpisodeRepositriesImpl extends EpisodeRepositories {
       Future<List<Character>> Function() characters) async {
     try {
       final character = await characters();
-      List<CharacterEntity> characterEntity = [];
-      for (var element in character) {
-        characterEntity
-            .add(await episodeLocaldatasource.toCharacterEntity(element));
-      }
+      List<CharacterEntity> characterEntity = character.map((element)=>element.toEntity()).toList();
       return Right(characterEntity);
     } catch (e) {
       return Left(ServerFailure());

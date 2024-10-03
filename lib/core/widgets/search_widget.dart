@@ -1,7 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-
 
 // ignore: must_be_immutable
 class SearchWidget extends StatelessWidget {
@@ -28,7 +28,7 @@ class SearchWidget extends StatelessWidget {
               onChanged: (value) => onChanged(value),
               controller: textController,
               decoration: InputDecoration(
-                hintText: 'Search...',
+                hintText: '${context.tr('src')}...',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(15),
                 ),

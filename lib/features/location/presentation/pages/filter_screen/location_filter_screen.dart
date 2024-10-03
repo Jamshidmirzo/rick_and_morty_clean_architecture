@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dimension/dimension_filter_location_screen.dart';
 import 'type/type_location_filter_screen.dart';
@@ -19,7 +20,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            _getButton('Type', () {
+            _getButton(context.tr('fltrbytype'), () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
@@ -29,7 +30,7 @@ class _LocationFilterScreenState extends State<LocationFilterScreen> {
                 ),
               );
             }),
-            _getButton('Dimension', () {
+            _getButton(context.tr('fltrbydmsn'), () {
               Navigator.push(
                 context,
                 MaterialPageRoute(

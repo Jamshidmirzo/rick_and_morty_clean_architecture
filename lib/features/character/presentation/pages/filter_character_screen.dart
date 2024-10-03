@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/widgets/buttons_for_filter.dart';
@@ -17,7 +18,7 @@ class FilterCharacterScreen extends StatelessWidget {
         child: Column(
           children: [
             ButtonsForFilter(
-              text: 'Filter by sort',
+              text: context.tr('fltrbysort'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -28,7 +29,7 @@ class FilterCharacterScreen extends StatelessWidget {
               },
             ),
             ButtonsForFilter(
-              text: 'Filter by species',
+              text: context.tr('fltrbyspc'),
               onTap: () {
                 Navigator.push(
                   context,
@@ -39,7 +40,7 @@ class FilterCharacterScreen extends StatelessWidget {
               },
             ),
             ButtonsForFilter(
-              text: 'Filter by gender',
+              text: context.tr('fltrbygender'),
               onTap: () {
                 Navigator.push(
                   context,

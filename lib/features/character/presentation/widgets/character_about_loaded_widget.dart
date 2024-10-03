@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:rick_and_morty/core/constants/app_diamans.dart';
 import 'package:rick_and_morty/core/extensions/extension.dart';
@@ -27,7 +28,7 @@ class CharacterAboutLoadedWidget extends StatelessWidget {
                   fontSize: 30,
                 ),
               ),
-             10.sH(),
+              10.sH(),
               Container(
                 padding: const EdgeInsets.all(AppDimens.PADDING_10),
                 width: double.infinity,
@@ -46,16 +47,17 @@ class CharacterAboutLoadedWidget extends StatelessWidget {
                 child: Column(
                   children: [
                     CharacterAboutWidget(
-                        firstText: character.gender, secondText: 'Gender'),
+                        firstText: character.gender,
+                        secondText: context.tr('gender')),
                     CharacterAboutWidget(
-                        firstText: character.species, secondText: 'Species'),
+                        firstText: character.species,
+                        secondText: context.tr('species')),
                     CharacterAboutWidget(
-                        firstText: character.status, secondText: 'Status'),
-                    const CharacterAboutWidget(
-                        firstText: 'qwerty', secondText: 'Episode'),
+                        firstText: character.status,
+                        secondText: context.tr('status')),
                     CharacterAboutWidget(
                         firstText: character.location.name,
-                        secondText: 'Location'),
+                        secondText: context.tr('location')),
                   ],
                 ),
               ),
