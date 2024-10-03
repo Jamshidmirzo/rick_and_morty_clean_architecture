@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:dio/dio.dart';
 import 'package:rick_and_morty/core/constants/constants.dart';
-import 'package:rick_and_morty/core/usecase/exception.dart';
+import 'package:rick_and_morty/core/error/exception.dart';
 import 'package:rick_and_morty/features/character/data/model/character.dart';
 
 abstract class CharacterRemote {
